@@ -2,39 +2,86 @@
  * FILE: src/components/layout/LanguageSwitcher.tsx
  *
  * Purpose:
- * - Handles locale switching while preserving current route
+ * - Renders a locale toggle that preserves the current route
  *
  * Notes:
- * - Uses next-intl navigation helpers
- * - Designed to remain minimal and consistent with Navbar
+ * - Mirrors the ThemeToggle footprint and motion exactly
+ * - Switches between English and Italian using locale-aware navigation
  */
 'use client';
 
+import * as React from 'react';
 import { useLocale } from 'next-intl';
-import { Link, localeOptions, usePathname } from '@/i18n/navigation';
-import { cn } from '@/lib/utils';
+import { Link, usePathname } from '@/i18n/navigation';
+import { useTheme } from '@/components/layout/ThemeToggle';
+import { useRouter } from 'next/navigation';
 
 export function LanguageSwitcher() {
   const locale = useLocale();
   const pathname = usePathname();
+  const { isLight } = useTheme();
+  const isItalian = locale === 'it';
+  const nextLocale = isItalian ? 'en' : 'it';
+
+  const router = useRouter();
+  const [isSwitching, setIsSwitching] = React.useState(false);
+
+  const isItalianVisual = isSwitching ? !isItalian : isItalian;
 
   return (
-    <div className='flex items-center gap-1 rounded-full border border-border-token bg-surface px-2 py-1'>
-      {localeOptions.map((option) => (
-        <Link
-          key={option.value}
-          href={pathname}
-          locale={option.value}
-          className={cn(
-            'rounded-full px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em]',
-            locale === option.value
-              ? 'bg-accent-token text-primary-token'
-              : 'text-muted hover:text-foreground',
-          )}
+    <button
+      onClick={() => {
+        if (isSwitching) return;
+        setIsSwitching(true);
+        setTimeout(() => {
+          router.push(`/${nextLocale}${pathname}`);
+        }, 250);
+      }}
+      aria-label={`Switch language to ${nextLocale.toUpperCase()}`}
+      className='relative inline-flex h-6 w-12 items-center overflow-hidden rounded-full border border-border-token bg-surface transition-all'
+      style={{
+        boxShadow: isLight
+          ? 'inset 0 2px 3px rgba(0,0,0,0.7), inset 0 -0.5px 3px var(--color-accent), 0 1.5px 2px 1px var(--color-primary)'
+          : 'inset 0 2px 3px rgba(0,0,0,1), inset 0 -2px 2px rgba(255,255,255,0.33), 0 0 3px 1px var(--color-accent)',
+      }}
+    >
+      <span className='relative inline-flex h-full w-full items-center'>
+        <span
+          className='relative z-10 inline-flex h-4.5 w-4.5 items-center justify-center rounded-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform'
+          style={{
+            backgroundColor: isLight
+              ? 'var(--color-accent)'
+              : 'var(--color-primary)',
+            boxShadow: isLight
+              ? 'inset 0 2px 3px rgba(255,255,255,0.2), inset 0 -2px 3px rgba(0,0,0,0.2), 0 2px 6px rgba(0,0,0,0.25), 0 0 4px var(--color-primary)'
+              : 'inset 0 2px 3px rgba(255,255,255,0.05), inset 0 -2px 3px rgba(0,0,0,0.6), 0 2px 6px rgba(0,0,0,0.6), 0 0 4px var(--color-accent)',
+            transform: isItalianVisual ? 'translateX(26px)' : 'translateX(2px)',
+          }}
         >
-          {option.label}
-        </Link>
-      ))}
-    </div>
+          <span
+            className='absolute inline-flex h-4 w-4 items-center justify-center rounded-full overflow-hidden'
+            style={{
+              backgroundColor: isLight
+                ? 'var(--color-accent)'
+                : 'var(--color-primary)',
+              boxShadow:
+                'inset 0 1px 2px rgba(0,0,0,0.5), 0 2px 3px rgba(0,0,0,0.5)',
+            }}
+          >
+            {isItalian ? (
+              <span className='fi fi-gb fis w-full h-full opacity-90 bg-cover' />
+            ) : (
+              <span className='fi fi-it fis w-full h-full opacity-90 bg-cover' />
+            )}
+            <span
+              className='pointer-events-none absolute inset-0 rounded-full'
+              style={{
+                boxShadow: 'inset 0 2px 3px rgba(0,0,0,0.35), inset 0 -1px 2px rgba(255,255,255,0.1)'
+              }}
+            />
+          </span>
+        </span>
+      </span>
+    </button>
   );
 }
