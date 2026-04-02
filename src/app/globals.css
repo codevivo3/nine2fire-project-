@@ -1,26 +1,139 @@
+/**
+ * FILE: src/app/globals.css
+ *
+ * Purpose:
+ * - Declares the global design tokens and low-level utility classes shared by the app
+ *
+ * Notes:
+ * - Theme values are exposed as CSS variables first, then mapped into Tailwind tokens
+ * - Logo visibility classes assume both light and dark logo assets are rendered together
+ */
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Base theme tokens live at the document level so sections can stay token-driven. */
+  --color-bg: #28282b;
+  --color-fg: color-mix(in srgb, #d6f3c4 18%, white 82%);
+  --color-primary: #28282b;
+  --color-secondary: #738678;
+  --color-accent: #ffcf40;
+  --color-border: color-mix(in srgb, #738678 38%, #28282b 62%);
+  --color-surface: color-mix(in srgb, #28282b 88%, #4d5d53 12%);
+  --color-surface-strong: color-mix(in srgb, #28282b 74%, #4d5d53 26%);
+  --color-muted: color-mix(in srgb, #d6f3c4 12%, white 88%);
+  --color-input: color-mix(in srgb, #28282b 78%, #4d5d53 22%);
+  --radius-sm: 0.75rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+}
+
+/* Topographic background pattern (theme-aware) */
+:root {
+  --bg-pattern: url("/pattern/topographic-pattern-dark-theme.svg");
+}
+
+html.light {
+  --color-bg: #d6f3c4;
+  --color-fg: #28282b;
+  --color-primary: #28282b;
+  --color-secondary: #4d5d53;
+  --color-accent: #ffcf40;
+  --color-border: color-mix(in srgb, #738678 42%, #d6f3c4 58%);
+  --color-surface: color-mix(in srgb, white 72%, #d6f3c4 28%);
+  --color-surface-strong: color-mix(in srgb, white 56%, #d6f3c4 44%);
+  --color-muted: #738678;
+  --color-input: color-mix(in srgb, white 64%, #d6f3c4 36%);
+  --bg-pattern: url("/pattern/topographic-pattern-light-theme.svg");
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Keep Tailwind-facing names stable even if raw token values evolve later. */
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-fg);
+  --color-primary-token: var(--color-primary);
+  --color-secondary-token: var(--color-secondary);
+  --color-accent-token: var(--color-accent);
+  --color-border-token: var(--color-border);
+  --color-surface: var(--color-surface);
+  --color-surface-strong: var(--color-surface-strong);
+  --color-muted: var(--color-muted);
+  --color-input: var(--color-input);
+  --font-sans: var(--font-manrope);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: var(--color-border);
+}
+
+html {
+  background-color: var(--color-bg);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  background: var(--color-bg);
+  color: var(--color-fg);
+  z-index: 1;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+
+  background-image: var(--bg-pattern);
+  background-repeat: repeat;
+  background-size: 600px;
+  background-position: center;
+
+  opacity: 0.04;
+  z-index: 0;
+}
+
+html.light body::before {
+  opacity: 0.05;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-primary);
+}
+
+a,
+button,
+input {
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease,
+    opacity 160ms ease;
+}
+
+.logo-light {
+  display: block;
+}
+
+.logo-dark {
+  display: none;
+}
+
+html.light .logo-light {
+  display: none;
+}
+
+html.light .logo-dark {
+  display: block;
+}
+
+.section-grid {
+  /* Shared spacing utility used across content sections to keep rhythm consistent. */
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-grid {
+    gap: 2rem;
+  }
 }
