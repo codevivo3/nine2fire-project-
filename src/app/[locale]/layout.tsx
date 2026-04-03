@@ -1,11 +1,11 @@
 /**
  * FILE: src/app/[locale]/layout.tsx
  *
- * Purpose:
+ * PURPOSE:
  * - Composes the locale-aware application shell for translated pages
  * - Bridges next-intl request state with shared navigation and footer chrome
  *
- * Notes:
+ * NOTES:
  * - Locale validation happens at the segment boundary to fail fast with `notFound()`
  * - Page-level metadata can inherit from this layout while staying translation-aware
  */
@@ -41,8 +41,7 @@ export async function generateMetadata({
   });
 
   return {
-    // Keep localized metadata minimal here so future route segments can extend it
-    // without duplicating site-wide defaults from the root layout.
+    // Keeps route metadata localized without duplicating root defaults.
     title: t("title"),
     description: t("description"),
   };
@@ -65,8 +64,7 @@ export default async function LocaleLayout({
     <NextIntlClientProvider
       key={resolvedLocale}
       locale={resolvedLocale}
-      // Messages are loaded on the server once per locale and passed through
-      // the provider so client components can stay translation-aware.
+      // Passes the locale bundle through once so client components can read translations.
       messages={await loadMessages(resolvedLocale)}
     >
       <div className="relative min-h-screen text-foreground">

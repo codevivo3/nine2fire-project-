@@ -1,7 +1,7 @@
 /**
  * FILE: src/components/sections/ValueProps.tsx
  *
- * Purpose:
+ * PURPOSE:
  * - Explains the core operating principles behind the product philosophy
  */
 import { useTranslations } from "next-intl";
@@ -12,27 +12,27 @@ export function ValueProps() {
   const t = useTranslations("ValueProps");
 
   return (
-    <section id="approach">
-      <Container className="py-16 md:py-24">
+    <section id='approach'>
+      <Container className='py-16 md:py-24'>
         <SectionHeader
-          eyebrow={t("eyebrow")}
-          title={t("title")}
-          description={t("description")}
+          eyebrow={t('eyebrow')}
+          title={t('title')}
+          description={t('description')}
         />
 
-        <div className="mt-10 grid gap-4 md:mt-12 md:grid-cols-3">
-          {["system", "clarity", "rhythm"].map((item) => (
+        <div className='mt-10 grid gap-4 md:mt-12 md:grid-cols-3'>
+          {['system', 'clarity', 'rhythm'].map((item) => (
             <article
               key={item}
-              className="rounded-[var(--radius-lg)] border border-border-token bg-surface/80 p-6 backdrop-blur-md md:p-7"
+              className='rounded-[var(--radius-lg)] border border-border-token bg-surface/80 p-6 backdrop-blur-md md:p-7'
             >
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-token">
+              <p className='text-xs font-semibold uppercase tracking-[0.18em] text-accent-eyebrow-token'>
                 {t(`items.${item}.eyebrow`)}
               </p>
-              <h3 className="mt-4 text-xl font-bold tracking-[-0.03em] text-foreground">
+              <h3 className='mt-4 text-xl font-bold tracking-[-0.03em] text-foreground'>
                 {t(`items.${item}.title`)}
               </h3>
-              <p className="mt-3 text-sm leading-7 text-foreground/72">
+              <p className='mt-3 text-sm leading-7 text-foreground/72'>
                 {t(`items.${item}.description`)}
               </p>
             </article>

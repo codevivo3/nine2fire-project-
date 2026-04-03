@@ -1,34 +1,16 @@
-/****
+'use client';
+/**
  * FILE: src/components/layout/ThemeToggle.tsx
  *
- * PURPOSE
+ * PURPOSE:
  * - Renders the theme toggle control (light ↔ dark)
  * - Provides a shared `useTheme` hook for cross-component synchronization
  *
- * BEHAVIOR
+ * NOTES:
  * - Theme is applied by toggling the `light` class on `<html>`
  * - A custom event (`nine2fire-theme-change`) keeps components in sync
  * - Toggle uses transform-based motion for smooth, hardware-like interaction
- *
- * VISUAL MODEL
- * - Knob = moving physical element (primary actor)
- * - Track = surface with depth and inner shadows
- * - Side icons (bulbs) = contextual indicators (state representation)
- *   • Left: OFF bulb (light mode context)
- *   • Right: ON bulb (dark mode context)
- * - Knob fully occludes background elements to preserve material illusion
- *
- * MOTION
- * - Transform-based movement (no layout shift)
- * - Fast response (~150ms) for snappy interaction
- * - Glow animation only active in dark mode
- *
- * PRINCIPLES
- * - No hardcoded colors (uses design tokens)
- * - Visual state derived from theme, not local duplication
- * - Separation between interaction (toggle) and rendering (CSS variables)
  */
-'use client';
 
 import * as React from 'react';
 import Image from 'next/image';
@@ -36,18 +18,26 @@ import { useTranslations } from 'next-intl';
 
 type ThemeMode = 'light' | 'dark';
 
-// Custom event used to broadcast theme changes across the app
+// Broadcasts theme updates so separate controls stay in sync.
 const THEME_EVENT = 'nine2fire-theme-change';
 
-// Reads current theme from <html> class (source of truth)
+// Reads the current theme from the document root, which is the single source of truth.
 function getTheme(): ThemeMode {
   if (typeof document === 'undefined') return 'dark';
-  return document.documentElement.classList.contains('light') ? 'light' : 'dark';
+  return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
 }
 
-// Shared hook to access and mutate theme state with global synchronization
+// Exposes the current theme and a synchronized toggle action for UI controls.
 export function useTheme() {
-  const [theme, setTheme] = React.useState<ThemeMode>(() => getTheme());
+  const [theme, setTheme] = React.useState<ThemeMode>('light');
+  React.useEffect(() => {
+    const current = getTheme();
+    setTheme(current);
+
+    if (current === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  }, []);
 
   React.useEffect(() => {
     const sync = () => setTheme(getTheme());
@@ -56,20 +46,20 @@ export function useTheme() {
     return () => window.removeEventListener(THEME_EVENT, sync);
   }, []);
 
-  // Applies theme to DOM and notifies listeners
+  // Updates the root class and notifies other listeners in the same session.
   const setMode = (next: ThemeMode) => {
     if (typeof document === 'undefined') return;
 
     const html = document.documentElement;
 
-    if (next === 'light') html.classList.add('light');
-    else html.classList.remove('light');
+    if (next === 'dark') html.classList.add('dark');
+    else html.classList.remove('dark');
 
     window.dispatchEvent(new Event(THEME_EVENT));
     setTheme(next);
   };
 
-  // Convenience toggle (light ↔ dark)
+  // Flips between the two supported theme modes.
   const toggleTheme = () => {
     setMode(theme === 'light' ? 'dark' : 'light');
   };
@@ -86,7 +76,7 @@ export function ThemeToggle() {
 
   const { isLight, toggleTheme } = useTheme();
 
-  // ThemeToggle renders a physical-style switch with embedded lighting metaphor
+  // The switch keeps the motion on transforms so the control does not shift layout.
   return (
     <button
       onClick={toggleTheme}

@@ -1,10 +1,10 @@
-/****
+/**
  * FILE: src/components/ui/Button.tsx
  *
- * Purpose:
+ * PURPOSE:
  * - Provides the shared button primitive and class generator used across the site
  *
- * Notes:
+ * NOTES:
  * - `buttonClasses` is exported so links and buttons can share the same visual variants
  */
 import type { ButtonHTMLAttributes } from "react";
@@ -26,7 +26,7 @@ export function buttonClasses({
     variant === 'primary' &&
       'border-primary-token bg-primary-token text-[color:var(--color-fg)] shadow-[var(--shadow-soft)] hover:bg-surface/60 backdrop-blur-sm hover:text-primary-token hover:border-primary-token',
     variant === 'secondary' &&
-      'border-border-token bg-surface/60 backdrop-blur-sm text-foreground shadow-[var(--shadow-soft)] hover:bg-accent-token hover:text-primary-token hover:border-accent-token',
+      'border-border-token bg-surface/60 backdrop-blur-sm text-foreground shadow-[var(--shadow-soft)] hover:bg-accent-token hover:!text-[color:var(--color-highlight-text)] hover:border-accent-token',
     variant === 'gold' &&
       'border-accent-token bg-accent-token text-primary-token shadow-[var(--shadow-soft)] hover:bg-surface/60 backdrop-blur-sm hover:text-foreground hover:border-accent-token',
     className,

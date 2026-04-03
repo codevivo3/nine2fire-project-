@@ -1,10 +1,10 @@
 /**
  * FILE: src/components/sections/Hero.tsx
  *
- * Purpose:
+ * PURPOSE:
  * - Renders the opening value proposition and top-of-page calls to action
  *
- * Notes:
+ * NOTES:
  * - CTA links target in-page anchors so the landing page stays a single focused flow
  */
 import { useTranslations } from "next-intl";
@@ -20,7 +20,7 @@ export function Hero() {
       <Container className='grid gap-12 py-12 md:gap-16 md:py-16 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] lg:items-end'>
         <div className='section-grid max-w-3xl gap-8'>
           <div className='section-grid gap-4'>
-            <p className='pl-[4px] text-sm font-semibold uppercase tracking-[0.18em] text-accent-token'>
+            <p className='pl-[4px] text-sm font-semibold uppercase tracking-[0.18em] text-accent-eyebrow-token opacity-90'>
               {t('eyebrow')}
             </p>
             <h1 className='max-w-3xl text-4xl font-extrabold leading-tight tracking-[-0.045em] text-foreground sm:text-5xl md:text-6xl'>

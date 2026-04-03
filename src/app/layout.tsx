@@ -1,11 +1,11 @@
 /**
  * FILE: src/app/layout.tsx
  *
- * Purpose:
+ * PURPOSE:
  * - Defines the application shell shared by every route
  * - Registers global fonts, metadata, and document-level styling hooks
  *
- * Notes:
+ * NOTES:
  * - Root metadata stays generic so locale segments can extend it safely
  * - `lang` is resolved from next-intl at render time to keep SSR output aligned
  */
@@ -22,16 +22,9 @@ const manrope = Manrope({
 });
 
 /**
- * Global metadata configuration
+ * Global metadata configuration shared by all routes.
  *
- * Includes:
- * - SEO base metadata
- * - OpenGraph / Twitter
- * - Favicon system (multi-source)
- *
- * IMPORTANT:
- * All favicon assets must share the same visual identity
- * to avoid inconsistent browser rendering.
+ * Includes base SEO fields, social metadata, and favicon declarations.
  */
 export const metadata: Metadata = {
   metadataBase: new URL("https://nine2fire.com"),
@@ -86,8 +79,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Fall back to the default document language if locale resolution happens
-  // outside a localized segment, such as the redirecting root entrypoint.
+  // Falls back when locale resolution happens outside a localized segment.
   const locale = await getLocale().catch(() => "en");
 
   return (

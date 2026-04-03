@@ -1,14 +1,13 @@
 /**
  * FILE: src/i18n/loadMessages.ts
  *
- * PURPOSE
+ * PURPOSE:
  * - Loads and merges all translation section files for a given locale
  *
- * IMPROVEMENTS
- * - Adds basic caching per locale (avoids repeated fs reads in dev)
- * - Adds error handling for missing/malformed files
- * - Warns on duplicate top-level keys (helps debugging overwrites)
- * - Keeps deterministic load order via sorted filenames
+ * NOTES:
+ * - Reads locale sections from disk in a deterministic order
+ * - Caches merged bundles in production to avoid repeated filesystem work
+ * - Warns when duplicate top-level namespaces would overwrite earlier sections
  */
 
 import { readdir, readFile } from "node:fs/promises";
@@ -16,11 +15,11 @@ import path from "node:path";
 import type { AbstractIntlMessages } from "next-intl";
 import type { AppLocale } from "@/i18n/routing";
 
-// Simple in-memory cache (per runtime instance)
+// Stores merged bundles for the lifetime of the current server runtime.
 const messageCache = new Map<AppLocale, AbstractIntlMessages>();
 
 export async function loadMessages(locale: AppLocale): Promise<AbstractIntlMessages> {
-  // Disable cache in development to avoid stale data issues
+  // Skip caching in development so message edits are picked up immediately.
   if (process.env.NODE_ENV === 'production' && messageCache.has(locale)) {
     return messageCache.get(locale)!;
   }
@@ -46,7 +45,7 @@ export async function loadMessages(locale: AppLocale): Promise<AbstractIntlMessa
       const raw = await readFile(sectionPath, "utf8");
       const section = JSON.parse(raw) as AbstractIntlMessages;
 
-      // Detect duplicate keys before merging
+      // Warn before a later section overwrites an existing namespace.
       for (const key of Object.keys(section)) {
         if (key in messages) {
           console.warn(
@@ -62,7 +61,7 @@ export async function loadMessages(locale: AppLocale): Promise<AbstractIntlMessa
     }
   }
 
-  // Cache result only in production
+  // Persist the merged bundle for subsequent requests in production.
   if (process.env.NODE_ENV === 'production') {
     messageCache.set(locale, messages);
   }

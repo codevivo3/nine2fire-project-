@@ -1,14 +1,14 @@
+'use client';
 /**
  * FILE: src/components/layout/LanguageSwitcher.tsx
  *
- * Purpose:
+ * PURPOSE:
  * - Renders a locale toggle that preserves the current route
  *
- * Notes:
+ * NOTES:
  * - Mirrors the ThemeToggle footprint and motion exactly
  * - Switches between English and Italian using locale-aware navigation
  */
-'use client';
 
 import * as React from 'react';
 import { useLocale } from 'next-intl';

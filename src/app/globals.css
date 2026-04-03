@@ -1,83 +1,91 @@
 /**
  * FILE: src/app/globals.css
  *
- * PURPOSE
+ * PURPOSE:
  * - Central source of truth for design tokens (colors, radii, typography)
  * - Provides theme (dark/light) via CSS variables
  * - Exposes tokens to Tailwind through @theme mapping
  * - Defines global base styles and utilities
  *
- * PRINCIPLES
+ * NOTES:
  * - Tokens first, components consume tokens (never raw colors)
  * - No hardcoded colors in components
- * - Theme handled globally via :root and html.light
+ * - Theme switching is handled via `:root` defaults and `html.light` overrides
  */
 
 @import 'tailwindcss';
 @import 'flag-icons/css/flag-icons.min.css';
 
 /* =========================================================
-   1. ROOT TOKENS (DEFAULT = DARK THEME)
+   1. ROOT TOKENS (DEFAULT = LIGHT THEME)
    ========================================================= */
 
 :root {
   /* Core palette */
-  --color-bg: #28282b;
-  --color-fg: color-mix(in srgb, #d6f3c4 18%, white 82%);
+  --color-bg: #d6f3c4;
+  --color-fg: #28282b;
 
   /* Semantic tokens */
   --color-primary: #28282b;
-  --color-secondary: #738678;
+  --color-secondary: #4d5d53;
   --color-accent: #ffcf40;
+  --color-accent-eyebrow: var(--color-primary);
+
+  /* Highlight (universal interaction layer) */
+  --color-highlight: var(--color-accent);
+  --color-highlight-text: #28282b;
 
   /* Surfaces & UI layers */
-  --color-border: color-mix(in srgb, #738678 38%, #28282b 62%);
-  --color-surface: color-mix(in srgb, #28282b 88%, #4d5d53 12%);
-  --color-surface-strong: color-mix(in srgb, #28282b 74%, #4d5d53 26%);
+  --color-border: color-mix(in srgb, #738678 42%, #d6f3c4 58%);
+  --color-surface: color-mix(in srgb, white 72%, #d6f3c4 28%);
+  --color-surface-strong: color-mix(in srgb, white 56%, #d6f3c4 44%);
 
   /* Text / utility */
-  --color-muted: color-mix(in srgb, #d6f3c4 12%, white 88%);
-  --color-input: color-mix(in srgb, #28282b 78%, #4d5d53 22%);
+  --color-muted: #738678;
+  --color-input: color-mix(in srgb, white 64%, #d6f3c4 36%);
 
   /* Radius scale */
   --radius-sm: 0.75rem;
   --radius-md: 1rem;
   --radius-lg: 1.5rem;
 
-  /* Background pattern (dark default) */
+  /* Background pattern (light default) */
+  --bg-pattern: url('/pattern/topographic-pattern-light-theme.svg');
+
+  /* Shadows (light theme) */
+  --shadow-soft: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================================
+   2. DARK THEME OVERRIDES
+   ========================================================= */
+
+html.dark {
+  --color-bg: #28282b;
+  --color-fg: color-mix(in srgb, #d6f3c4 18%, white 82%);
+
+  --color-primary: #28282b;
+  --color-secondary: #738678;
+  --color-accent: #ffcf40;
+  --color-accent-eyebrow: var(--color-accent);
+
+  /* Highlight (same across themes) */
+  --color-highlight: var(--color-accent);
+  --color-highlight-text: #28282b;
+
+  --color-border: color-mix(in srgb, #738678 38%, #28282b 62%);
+  --color-surface: color-mix(in srgb, #28282b 88%, #4d5d53 12%);
+  --color-surface-strong: color-mix(in srgb, #28282b 74%, #4d5d53 26%);
+
+  --color-muted: color-mix(in srgb, #d6f3c4 12%, white 88%);
+  --color-input: color-mix(in srgb, #28282b 78%, #4d5d53 22%);
+
+  /* Pattern swap */
   --bg-pattern: url('/pattern/topographic-pattern-dark-theme.svg');
 
   /* Shadows (dark theme) */
   --shadow-soft:
-    0 2px 6px rgba(0,0,0,0.6),
-    0 0 6px rgba(255,255,255,0.04);
-}
-
-/* =========================================================
-   2. LIGHT THEME OVERRIDES
-   ========================================================= */
-
-html.light {
-  --color-bg: #d6f3c4;
-  --color-fg: #28282b;
-
-  --color-primary: #28282b;
-  --color-secondary: #4d5d53;
-  --color-accent: #ffcf40;
-
-  --color-border: color-mix(in srgb, #738678 42%, #d6f3c4 58%);
-  --color-surface: color-mix(in srgb, white 72%, #d6f3c4 28%);
-  --color-surface-strong: color-mix(in srgb, white 56%, #d6f3c4 44%);
-
-  --color-muted: #738678;
-  --color-input: color-mix(in srgb, white 64%, #d6f3c4 36%);
-
-  /* Pattern swap */
-  --bg-pattern: url('/pattern/topographic-pattern-light-theme.svg');
-
-  /* Shadows (light theme) */
-  --shadow-soft:
-    0 2px 6px rgba(0,0,0,0.15);
+    0 2px 6px rgba(0, 0, 0, 0.6), 0 0 6px rgba(255, 255, 255, 0.04);
 }
 
 /* =========================================================
@@ -91,6 +99,7 @@ html.light {
   --color-primary-token: var(--color-primary);
   --color-secondary-token: var(--color-secondary);
   --color-accent-token: var(--color-accent);
+  --color-accent-eyebrow-token: var(--color-accent-eyebrow);
   --color-border-token: var(--color-border);
 
   --color-surface: var(--color-surface);
@@ -135,8 +144,8 @@ html::before {
   background-position: center top;
   background-attachment: fixed;
 
-  /* Subtle texture only */
-  opacity: 0.04;
+  /* Keep the pattern visible without competing with content surfaces. */
+  opacity: 0.05;
   z-index: 0;
 
   will-change: transform;
@@ -145,8 +154,8 @@ html::before {
   animation-range: 0% 100%;
 }
 
-html.light::before {
-  opacity: 0.05;
+html.dark::before {
+  opacity: 0.04;
 }
 
 /* =========================================================
@@ -158,15 +167,72 @@ html.light::before {
   color: var(--color-primary);
 }
 
-/* Smooth transitions for interactive elements */
+/* Keep common interactive state changes visually consistent. */
 a,
 button,
 input {
   transition:
     color 160ms ease,
-    background-color 160ms ease,
-    border-color 160ms ease,
-    opacity 160ms ease;
+    background-color 160ms ease;
+}
+
+/* Link hover behavior per theme */
+
+html:not(.dark) a:hover {
+  color: var(--color-fg);
+}
+
+html.dark a:not(.link-highlight):hover {
+  color: var(--color-accent);
+}
+
+/* =========================================================
+   LINK HIGHLIGHT (MARKER EFFECT)
+   ========================================================= */
+
+.link-highlight {
+  position: relative;
+  display: inline-block;
+}
+
+.link-highlight > span {
+  position: relative;
+  z-index: 1;
+}
+
+.link-highlight::before {
+  content: '';
+  position: absolute;
+  left: -3px;
+  right: -3px;
+  top: 85%;
+  height: 152%;
+
+  transform: translateY(-50%) rotate(-30deg) scaleX(0);
+  transform-origin: left;
+
+  background: var(--color-highlight);
+  opacity: 0.9;
+
+  /* more organic feel */
+  border-radius: 2px;
+
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.link-highlight--icon::before {
+  top: 29%;
+  height: 85%;
+  left: -25%;
+  right: 36%;
+}
+
+.link-highlight:hover::before {
+  transform: translateY(-50%) rotate(-10deg) scaleX(1);
+}
+
+.link-highlight:hover {
+  color: var(--color-highlight-text);
 }
 
 /* =========================================================
@@ -174,19 +240,19 @@ input {
    ========================================================= */
 
 .logo-light {
-  display: block;
+  display: none;
 }
 
 .logo-dark {
-  display: none;
-}
-
-html.light .logo-light {
-  display: none;
-}
-
-html.light .logo-dark {
   display: block;
+}
+
+html.dark .logo-light {
+  display: block;
+}
+
+html.dark .logo-dark {
+  display: none;
 }
 
 /* =========================================================
@@ -209,7 +275,7 @@ html.light .logo-dark {
    9. ANIMATIONS
    ========================================================= */
 
-/* Subtle breathing light for toggle */
+/* Soft pulse used by the dark-mode toggle indicator. */
 @keyframes lightPulse {
   0%,
   100% {

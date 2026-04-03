@@ -1,10 +1,10 @@
 /**
  * FILE: src/components/sections/CTA.tsx
  *
- * Purpose:
+ * PURPOSE:
  * - Closes the landing page with a lightweight lead capture interaction
  *
- * Notes:
+ * NOTES:
  * - The form remains presentational for now; submission wiring can be added later
  */
 import { useTranslations } from "next-intl";
@@ -20,7 +20,7 @@ export function CTA() {
         <div className='rounded-[var(--radius-lg)] border border-border-token bg-surface-strong/85 p-6 backdrop-blur-lg md:p-10'>
           <div className='section-grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(280px,420px)] md:items-end'>
             <div className='section-grid gap-4'>
-              <p className='text-xs font-semibold uppercase tracking-[0.18em] text-accent-token'>
+              <p className='text-xs font-semibold uppercase tracking-[0.18em] text-accent-eyebrow-token'>
                 {t('eyebrow')}
               </p>
               <h2 className='max-w-2xl text-3xl font-bold tracking-[-0.04em] text-foreground sm:text-4xl'>

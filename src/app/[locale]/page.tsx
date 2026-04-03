@@ -1,10 +1,10 @@
 /**
  * FILE: src/app/[locale]/page.tsx
  *
- * Purpose:
+ * PURPOSE:
  * - Assembles the localized landing page from reusable marketing sections
  *
- * Notes:
+ * NOTES:
  * - Section ordering here defines the narrative flow for every supported locale
  */
 import { setRequestLocale } from "next-intl/server";

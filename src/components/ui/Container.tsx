@@ -1,7 +1,7 @@
 /**
  * FILE: src/components/ui/Container.tsx
  *
- * Purpose:
+ * PURPOSE:
  * - Enforces the shared horizontal rhythm and max width for page sections
  */
 import type { HTMLAttributes } from "react";

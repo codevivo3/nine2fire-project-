@@ -1,15 +1,14 @@
+'use client';
 /**
  * FILE: src/components/layout/Navbar.tsx
  *
- * Purpose:
- * - Handles global navigation and locale switching for the marketing site
+ * PURPOSE:
+ * - Renders the persistent site header, localized navigation, and mobile menu
  *
- * Notes:
- * - Uses locale-aware links so hash navigation stays inside the active locale segment
- * - Mobile state is intentionally local to keep the header self-contained
+ * NOTES:
+ * - Desktop links use the shared `NavLink` treatment so hover behavior stays consistent
+ * - Mobile locale buttons preserve the current pathname while switching language
  */
-'use client';
-
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
@@ -21,6 +20,7 @@ import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher';
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
 import { Link, localeOptions } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
+import { NavLink } from '@/components/ui/NavLink';
 
 export function Navbar() {
   const t = useTranslations('Navigation');
@@ -35,22 +35,15 @@ export function Navbar() {
   ];
 
   return (
-    <header
-      className='fixed inset-x-0 top-0 z-50 bg-surface/80 backdrop-blur-xl'
-      
-    >
-      <Container className='flex h-20 items-center justify-between gap-6'>
+    <header className='fixed inset-x-0 top-0 z-50 bg-surface/80 backdrop-blur-xl'>
+      <Container className='flex h-18 items-center justify-between gap-6'>
         <BrandLogo className='shrink-0' />
 
         <nav className='hidden items-center gap-8 md:flex'>
           {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className='text-sm font-semibold text-foreground/82 hover:text-accent-token'
-            >
+            <NavLink key={link.href} href={link.href}>
               {link.label}
-            </Link>
+            </NavLink>
           ))}
         </nav>
 
@@ -81,14 +74,13 @@ export function Navbar() {
         <Container className='section-grid py-4'>
           <nav className='section-grid'>
             {links.map((link) => (
-              <Link
+              <NavLink
                 key={link.href}
                 href={link.href}
-                className='text-sm font-semibold text-foreground'
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
-              </Link>
+              </NavLink>
             ))}
           </nav>
 

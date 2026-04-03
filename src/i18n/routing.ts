@@ -1,10 +1,10 @@
 /**
  * FILE: src/i18n/routing.ts
  *
- * Purpose:
+ * PURPOSE:
  * - Centralizes the supported locales and routing strategy for next-intl
  *
- * Notes:
+ * NOTES:
  * - Other i18n helpers import this config so locale behavior stays consistent
  */
 import { defineRouting } from "next-intl/routing";

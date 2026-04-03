@@ -1,16 +1,18 @@
 /**
  * FILE: src/components/layout/Footer.tsx
  *
- * Purpose:
- * - Renders the global footer with localized navigation and legal placeholders
+ * PURPOSE:
+ * - Renders the global footer with localized navigation, legal links, and contact actions
  *
- * Notes:
- * - Shares the same anchor structure as the header to keep landing-page sections discoverable
+ * NOTES:
+ * - Reuses `NavLink` so link hover treatment matches the header
+ * - Contact actions stay plain anchors because they target external destinations
  */
 import { useTranslations } from 'next-intl';
 import { BrandLogo } from '@/components/layout/BrandLogo';
 import { Container } from '@/components/ui/Container';
-import { Link } from '@/i18n/navigation';
+
+import { NavLink } from '@/components/ui/NavLink';
 import {
   FaXTwitter,
   FaInstagram,
@@ -32,6 +34,18 @@ export function Footer() {
     { href: '/', label: t('legal.terms') },
   ];
 
+  // Shared icon-link treatment keeps the contact row visually consistent.
+  const contactLinkClasses = `
+    link-highlight
+    link-highlight--icon
+    group
+    inline-flex items-center justify-center
+    w-10 h-10
+    text-[color:var(--color-fg)]
+    transition-transform duration-200
+    hover:scale-105
+  `;
+
   return (
     <footer className='bg-surface/80 backdrop-blur-md text-[color:var(--color-fg)]'>
       <Container className='section-grid py-12 md:grid-cols-[2fr_1fr_1fr_1fr] md:items-start'>
@@ -46,76 +60,76 @@ export function Footer() {
         </div>
 
         <div className='section-grid gap-4'>
-          <p className='text-xs font-semibold uppercase tracking-[0.18em] text-accent-token'>
+          <p className='text-xs font-semibold uppercase tracking-[0.18em] text-accent-eyebrow-token'>
             {t('navTitle')}
           </p>
           <div className='section-grid gap-3'>
             {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className='text-sm text-[color:var(--color-fg)]/80 hover:text-accent-token'
-              >
+              <NavLink key={link.label} href={link.href} className="inline-block w-fit">
                 {link.label}
-              </Link>
+              </NavLink>
             ))}
           </div>
         </div>
 
         <div className='section-grid gap-4'>
-          <p className='text-xs font-semibold uppercase tracking-[0.18em] text-accent-token'>
+          <p className='text-xs font-semibold uppercase tracking-[0.18em] text-accent-eyebrow-token'>
             {t('legalTitle')}
           </p>
           <div className='section-grid gap-3'>
             {legalLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className='text-sm text-[color:var(--color-fg)]/80 hover:text-accent-token'
-              >
+              <NavLink key={link.label} href={link.href} className="inline-block w-fit">
                 {link.label}
-              </Link>
+              </NavLink>
             ))}
           </div>
         </div>
 
         <div className='section-grid gap-4'>
-          <p className='text-xs font-semibold uppercase tracking-[0.18em] text-accent-token'>
+          <p className='text-xs font-semibold uppercase tracking-[0.18em] text-accent-eyebrow-token'>
             Contact
           </p>
           <div className='flex items-center gap-4'>
             <a
               href='mailto:info@nine2fire.com'
-              className='group flex items-center justify-center rounded-full p-2 text-[color:var(--color-fg)]/70 hover:text-accent-token hover:bg-surface/60 transition'
+              className={contactLinkClasses}
             >
-              <FaEnvelope className='h-4 w-4 opacity-80 group-hover:opacity-100 transition' />
+              <span className="relative z-10">
+                <FaEnvelope className='h-4 w-4 opacity-80 group-hover:opacity-100 transition' />
+              </span>
               <span className='sr-only'>Email</span>
             </a>
             <a
               href='https://x.com/nine2fire'
               target='_blank'
               rel='noopener noreferrer'
-              className='group flex items-center justify-center rounded-full p-2 text-[color:var(--color-fg)]/70 hover:text-accent-token hover:bg-surface/60 transition'
+              className={contactLinkClasses}
             >
-              <FaXTwitter className='h-4 w-4 opacity-80 group-hover:opacity-100 transition' />
+              <span className="relative z-10">
+                <FaXTwitter className='h-4 w-4 opacity-80 group-hover:opacity-100 transition' />
+              </span>
               <span className='sr-only'>X</span>
             </a>
             <a
               href='https://www.facebook.com/profile.php?id=61575171760852'
               target='_blank'
               rel='noopener noreferrer'
-              className='group flex items-center justify-center rounded-full p-2 text-[color:var(--color-fg)]/70 hover:text-accent-token hover:bg-surface/60 transition'
+              className={contactLinkClasses}
             >
-              <FaFacebook className='h-4 w-4 opacity-80 group-hover:opacity-100 transition' />
+              <span className="relative z-10">
+                <FaFacebook className='h-4 w-4 opacity-80 group-hover:opacity-100 transition' />
+              </span>
               <span className='sr-only'>Facebook</span>
             </a>
             <a
               href='https://www.instagram.com/nine2fire_blog/'
               target='_blank'
               rel='noopener noreferrer'
-              className='group flex items-center justify-center rounded-full p-2 text-[color:var(--color-fg)]/70 hover:text-accent-token hover:bg-surface/60 transition'
+              className={contactLinkClasses}
             >
-              <FaInstagram className='h-4 w-4 opacity-80 group-hover:opacity-100 transition' />
+              <span className="relative z-10">
+                <FaInstagram className='h-4 w-4 opacity-80 group-hover:opacity-100 transition' />
+              </span>
               <span className='sr-only'>Instagram</span>
             </a>
           </div>

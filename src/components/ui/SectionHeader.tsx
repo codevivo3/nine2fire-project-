@@ -1,7 +1,7 @@
 /**
  * FILE: src/components/ui/SectionHeader.tsx
  *
- * Purpose:
+ * PURPOSE:
  * - Standardizes the eyebrow, heading, and description pattern used by content sections
  */
 type SectionHeaderProps = {
@@ -17,7 +17,7 @@ export function SectionHeader({
 }: SectionHeaderProps) {
   return (
     <div className='max-w-3xl'>
-      <p className='pl-[2px] text-sm font-semibold uppercase tracking-[0.18em] text-accent-token'>
+      <p className='pl-[2px] text-sm font-semibold uppercase tracking-[0.18em] text-accent-eyebrow-token'>
         {eyebrow}
       </p>
       <h2 className='mt-4 text-3xl font-bold tracking-[-0.04em] text-foreground sm:text-4xl'>

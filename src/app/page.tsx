@@ -1,10 +1,10 @@
 /**
  * FILE: src/app/page.tsx
  *
- * Purpose:
+ * PURPOSE:
  * - Redirects the non-localized root route into the default locale segment
  *
- * Notes:
+ * NOTES:
  * - Keeps a single localized page tree as the source of truth
  */
 import { redirect } from "next/navigation";
