@@ -96,7 +96,7 @@ export default async function RootLayout({
       className={`${manrope.variable} h-full scroll-smooth antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full bg-background text-foreground font-sans">
+      <body className="min-h-full text-foreground font-sans">
         {children}
       </body>
     </html>

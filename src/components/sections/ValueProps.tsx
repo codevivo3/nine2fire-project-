@@ -12,7 +12,7 @@ export function ValueProps() {
   const t = useTranslations("ValueProps");
 
   return (
-    <section id="approach" className="border-b border-border-token/70">
+    <section id="approach">
       <Container className="py-16 md:py-24">
         <SectionHeader
           eyebrow={t("eyebrow")}
@@ -24,7 +24,7 @@ export function ValueProps() {
           {["system", "clarity", "rhythm"].map((item) => (
             <article
               key={item}
-              className="rounded-[var(--radius-lg)] border border-border-token bg-surface p-6 md:p-7"
+              className="rounded-[var(--radius-lg)] border border-border-token bg-surface/80 p-6 backdrop-blur-md md:p-7"
             >
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-token">
                 {t(`items.${item}.eyebrow`)}

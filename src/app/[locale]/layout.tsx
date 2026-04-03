@@ -63,12 +63,13 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider
+      key={resolvedLocale}
       locale={resolvedLocale}
       // Messages are loaded on the server once per locale and passed through
       // the provider so client components can stay translation-aware.
       messages={await loadMessages(resolvedLocale)}
     >
-      <div className="relative min-h-screen bg-background text-foreground">
+      <div className="relative min-h-screen text-foreground">
         <Navbar />
         {children}
         <Footer />

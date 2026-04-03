@@ -1,0 +1,26 @@
+{
+  "Roadmap": {
+    "eyebrow": "Roadmap",
+    "title": "A clear sequence beats a crowded dashboard.",
+    "description": "The product can grow in measured layers. Each phase adds structure without diluting the brand or the interface.",
+    "stepLabel": "Step {index}",
+    "steps": {
+      "audit": {
+        "title": "Map the essentials",
+        "description": "Define the core pages, token system, copy blocks, and message structure before adding moving parts."
+      },
+      "design": {
+        "title": "Set the design language",
+        "description": "Lock typography, color behavior, spacing rules, and component patterns so future sections inherit the same standard."
+      },
+      "automation": {
+        "title": "Add useful tools",
+        "description": "Introduce calculators, newsletter flows, and AI-assisted features only when the content and navigation framework are stable."
+      },
+      "review": {
+        "title": "Refine the system",
+        "description": "Tighten the details, simplify what drifts, and keep the brand clear as the platform expands."
+      }
+    }
+  }
+}

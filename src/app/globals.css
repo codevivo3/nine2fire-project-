@@ -13,7 +13,7 @@
  * - Theme handled globally via :root and html.light
  */
 
-@import "tailwindcss";
+@import 'tailwindcss';
 @import 'flag-icons/css/flag-icons.min.css';
 
 /* =========================================================
@@ -45,7 +45,12 @@
   --radius-lg: 1.5rem;
 
   /* Background pattern (dark default) */
-  --bg-pattern: url("/pattern/topographic-pattern-dark-theme.svg");
+  --bg-pattern: url('/pattern/topographic-pattern-dark-theme.svg');
+
+  /* Shadows (dark theme) */
+  --shadow-soft:
+    0 2px 6px rgba(0,0,0,0.6),
+    0 0 6px rgba(255,255,255,0.04);
 }
 
 /* =========================================================
@@ -68,7 +73,11 @@ html.light {
   --color-input: color-mix(in srgb, white 64%, #d6f3c4 36%);
 
   /* Pattern swap */
-  --bg-pattern: url("/pattern/topographic-pattern-light-theme.svg");
+  --bg-pattern: url('/pattern/topographic-pattern-light-theme.svg');
+
+  /* Shadows (light theme) */
+  --shadow-soft:
+    0 2px 6px rgba(0,0,0,0.15);
 }
 
 /* =========================================================
@@ -106,8 +115,7 @@ html {
 
 body {
   position: relative;
-  background: var(--color-bg);
-  color: var(--color-fg);
+  background: transparent;
   z-index: 1;
 }
 
@@ -115,23 +123,29 @@ body {
    5. BACKGROUND PATTERN LAYER
    ========================================================= */
 
-body::before {
-  content: "";
+html::before {
+  content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
 
   background-image: var(--bg-pattern);
-  background-repeat: repeat;
-  background-size: 600px;
-  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
 
   /* Subtle texture only */
   opacity: 0.04;
   z-index: 0;
+
+  will-change: transform;
+  animation: parallax linear both;
+  animation-timeline: scroll();
+  animation-range: 0% 100%;
 }
 
-html.light body::before {
+html.light::before {
   opacity: 0.05;
 }
 
@@ -197,7 +211,8 @@ html.light .logo-dark {
 
 /* Subtle breathing light for toggle */
 @keyframes lightPulse {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow:
       0 0 0.5px 0.5px var(--color-accent),
       0 0 10px 1px var(--color-accent);
@@ -206,5 +221,14 @@ html.light .logo-dark {
     box-shadow:
       0 0 1.5px 0.5px var(--color-accent),
       0 0 8px 1px var(--color-accent);
+  }
+}
+
+@keyframes parallax {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(80px);
   }
 }

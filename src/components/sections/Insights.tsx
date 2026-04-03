@@ -12,7 +12,7 @@ export function Insights() {
   const t = useTranslations("Insights");
 
   return (
-    <section id="insights" className="border-b border-border-token/70">
+    <section id="insights">
       <Container className="py-16 md:py-24">
         <SectionHeader
           eyebrow={t("eyebrow")}
@@ -24,7 +24,7 @@ export function Insights() {
           {["journal", "playbook", "signal"].map((item) => (
             <article
               key={item}
-              className="rounded-[var(--radius-lg)] border border-border-token bg-surface p-6"
+              className="rounded-[var(--radius-lg)] border border-border-token bg-surface/80 p-6 backdrop-blur-md"
             >
               <div className="flex items-center justify-between gap-4 text-xs font-semibold uppercase tracking-[0.18em] text-muted">
                 <span>{t(`items.${item}.category`)}</span>

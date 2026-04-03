@@ -1,0 +1,17 @@
+{
+  "Footer": {
+    "tagline": "A bilingual foundation for editorial finance, tools, and deliberate growth.",
+    "copyright": "© Nine2Fire",
+    "navTitle": "Navigate",
+    "legalTitle": "Legal",
+    "navigation": {
+      "approach": "Approach",
+      "roadmap": "Roadmap",
+      "insights": "Insights"
+    },
+    "legal": {
+      "privacy": "Privacy",
+      "terms": "Terms"
+    }
+  }
+}

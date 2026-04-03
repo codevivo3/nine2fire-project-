@@ -1,0 +1,24 @@
+{
+  "ValueProps": {
+    "eyebrow": "Why this structure",
+    "title": "A foundation made for long cycles, not quick spikes.",
+    "description": "The first version should stay lean, readable, and ready for expansion into editorial, tools, automation, and AI-assisted flows.",
+    "items": {
+      "system": {
+        "eyebrow": "System",
+        "title": "One operating language",
+        "description": "Pages, tools, and future products can share the same spacing, token, and content structure from day one."
+      },
+      "clarity": {
+        "eyebrow": "Clarity",
+        "title": "Every section has a job",
+        "description": "Navigation stays minimal, copy stays direct, and layout decisions stay easy to extend without rewriting the foundation."
+      },
+      "rhythm": {
+        "eyebrow": "Rhythm",
+        "title": "Responsive by default",
+        "description": "The system is designed mobile-first and keeps its alignment on tablet and desktop without turning into a template."
+      }
+    }
+  }
+}

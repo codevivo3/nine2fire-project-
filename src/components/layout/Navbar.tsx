@@ -35,7 +35,10 @@ export function Navbar() {
   ];
 
   return (
-    <header className='fixed inset-x-0 top-0 z-50 border-b border-border-token/70 bg-background/95 backdrop-blur-sm'>
+    <header
+      className='fixed inset-x-0 top-0 z-50 bg-surface/80 backdrop-blur-xl'
+      
+    >
       <Container className='flex h-20 items-center justify-between gap-6'>
         <BrandLogo className='shrink-0' />
 
@@ -51,7 +54,7 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div className='hidden items-center gap-3 md:flex'>
+        <div className='hidden flex-col items-center gap-2 md:flex'>
           <LanguageSwitcher />
           <ThemeToggle />
         </div>
@@ -71,7 +74,7 @@ export function Navbar() {
       <div
         id='mobile-navigation'
         className={cn(
-          'border-t border-border-token bg-background md:hidden',
+          'bg-background/95 backdrop-blur-sm md:hidden',
           isOpen ? 'block' : 'hidden',
         )}
       >

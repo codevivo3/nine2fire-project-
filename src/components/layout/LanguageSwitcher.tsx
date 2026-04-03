@@ -12,7 +12,7 @@
 
 import * as React from 'react';
 import { useLocale } from 'next-intl';
-import { Link, usePathname } from '@/i18n/navigation';
+import { usePathname } from '@/i18n/navigation';
 import { useTheme } from '@/components/layout/ThemeToggle';
 import { useRouter } from 'next/navigation';
 
@@ -47,7 +47,7 @@ export function LanguageSwitcher() {
     >
       <span className='relative inline-flex h-full w-full items-center'>
         <span
-          className='relative z-10 inline-flex h-4.5 w-4.5 items-center justify-center rounded-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform'
+          className='relative z-10 inline-flex h-4.5 w-4.5 items-center justify-center rounded-full transition-transform duration-[150ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform'
           style={{
             backgroundColor: isLight
               ? 'var(--color-accent)'
@@ -68,7 +68,7 @@ export function LanguageSwitcher() {
                 'inset 0 1px 2px rgba(0,0,0,0.5), 0 2px 3px rgba(0,0,0,0.5)',
             }}
           >
-            {isItalian ? (
+            {isItalianVisual ? (
               <span className='fi fi-gb fis w-full h-full opacity-90 bg-cover' />
             ) : (
               <span className='fi fi-it fis w-full h-full opacity-90 bg-cover' />

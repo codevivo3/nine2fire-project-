@@ -1,0 +1,17 @@
+{
+  "Footer": {
+    "tagline": "Una base bilingue per finanza editoriale, strumenti e crescita deliberata.",
+    "copyright": "© Nine2Fire",
+    "navTitle": "Naviga",
+    "legalTitle": "Legale",
+    "navigation": {
+      "approach": "Approccio",
+      "roadmap": "Roadmap",
+      "insights": "Insight"
+    },
+    "legal": {
+      "privacy": "Privacy",
+      "terms": "Termini"
+    }
+  }
+}

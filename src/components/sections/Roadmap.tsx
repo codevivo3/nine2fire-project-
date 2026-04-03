@@ -12,7 +12,7 @@ export function Roadmap() {
   const t = useTranslations("Roadmap");
 
   return (
-    <section id="roadmap" className="border-b border-border-token/70">
+    <section id="roadmap">
       <Container className="py-16 md:py-24">
         <SectionHeader
           eyebrow={t("eyebrow")}
@@ -24,7 +24,7 @@ export function Roadmap() {
           {["audit", "design", "automation", "review"].map((step, index) => (
             <article
               key={step}
-              className="rounded-[var(--radius-lg)] border border-border-token bg-surface p-6"
+              className="rounded-[var(--radius-lg)] border border-border-token bg-surface/80 p-6 backdrop-blur-md"
             >
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
                 {t("stepLabel", { index: index + 1 })}

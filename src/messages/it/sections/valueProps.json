@@ -1,0 +1,24 @@
+{
+  "ValueProps": {
+    "eyebrow": "Perché questa struttura",
+    "title": "Una base pensata per cicli lunghi, non per picchi veloci.",
+    "description": "La prima versione deve restare essenziale, leggibile e pronta a crescere verso editoriale, strumenti, automazioni e flussi assistiti dall'AI.",
+    "items": {
+      "system": {
+        "eyebrow": "Sistema",
+        "title": "Un solo linguaggio operativo",
+        "description": "Pagine, strumenti e prodotti futuri possono condividere fin dall'inizio la stessa struttura di spazi, token e contenuti."
+      },
+      "clarity": {
+        "eyebrow": "Chiarezza",
+        "title": "Ogni sezione ha un compito",
+        "description": "La navigazione resta minimale, il copy resta diretto e il layout si estende senza riscrivere le fondamenta."
+      },
+      "rhythm": {
+        "eyebrow": "Ritmo",
+        "title": "Responsive per definizione",
+        "description": "Il sistema nasce mobile-first e mantiene l'allineamento su tablet e desktop senza sembrare un template."
+      }
+    }
+  }
+}

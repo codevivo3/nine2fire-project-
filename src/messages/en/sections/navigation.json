@@ -1,0 +1,12 @@
+{
+  "Navigation": {
+    "links": {
+      "approach": "Approach",
+      "roadmap": "Roadmap",
+      "insights": "Insights"
+    },
+    "openMenu": "Menu",
+    "closeMenu": "Close",
+    "themePlaceholder": "Theme"
+  }
+}
