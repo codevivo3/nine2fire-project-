@@ -10,23 +10,30 @@
  * - Mobile locale buttons preserve the current pathname while switching language
  */
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
-import { usePathname } from 'next/navigation';
-import { useLocale } from 'next-intl';
-import { buttonClasses } from '@/components/ui/Button';
+import { useState, useEffect } from 'react';
 import { Container } from '@/components/ui/Container';
 import { BrandLogo } from '@/components/layout/BrandLogo';
 import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher';
-import { ThemeToggle } from '@/components/layout/ThemeToggle';
-import { Link, localeOptions } from '@/i18n/navigation';
+import { ThemeToggle, useTheme } from '@/components/layout/ThemeToggle';
 import { cn } from '@/lib/utils';
 import { NavLink } from '@/components/ui/NavLink';
+import { List, X, Globe } from 'phosphor-react';
+import Image from 'next/image';
 
 export function Navbar() {
   const t = useTranslations('Navigation');
-  const pathname = usePathname();
-  const locale = useLocale();
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  const { isLight } = useTheme();
 
   const links = [
     { href: '/#approach', label: t('links.approach') },
@@ -36,10 +43,15 @@ export function Navbar() {
 
   return (
     <header className='fixed inset-x-0 top-0 z-50 bg-surface/80 backdrop-blur-xl'>
-      <Container className='flex h-18 items-center justify-between gap-6'>
+      <Container
+        className={cn(
+          'relative flex items-center justify-between gap-6 transition-all duration-300 ease-out',
+          isScrolled ? 'h-14 scale-[0.97]' : 'h-14 scale-100'
+        )}
+      >
         <BrandLogo className='shrink-0' />
 
-        <nav className='hidden items-center gap-8 md:flex'>
+        <nav className='hidden items-center gap-8 md:flex absolute left-1/2 -translate-x-1/2'>
           {links.map((link) => (
             <NavLink key={link.href} href={link.href}>
               {link.label}
@@ -47,21 +59,53 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div className='hidden flex-col items-center gap-2 md:flex'>
-          <LanguageSwitcher />
-          <ThemeToggle />
-        </div>
+        <div className='flex items-center gap-2 md:ml-auto'>
+          {/* Desktop inline toggles */}
+          <div
+            className={cn(
+              'hidden items-center gap-2 md:flex transition-all duration-200 ease-out',
+              isOpen
+                ? 'opacity-100 translate-x-0'
+                : 'opacity-0 translate-x-6 pointer-events-none'
+            )}
+          >
+            <div className='flex items-center gap-1.5'>
+              <Globe
+                size={18}
+                weight='regular'
+                className='text-muted-foreground opacity-90'
+              />
+              <LanguageSwitcher />
+            </div>
 
-        <button
-          type='button'
-          className='inline-flex items-center rounded-full border border-border-token px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-foreground md:hidden'
-          onClick={() => setIsOpen((open) => !open)}
-          aria-expanded={isOpen}
-          aria-controls='mobile-navigation'
-          aria-haspopup='menu'
-        >
-          {isOpen ? t('closeMenu') : t('openMenu')}
-        </button>
+            <div className='flex items-center gap-1.5'>
+              <Image
+                src={isLight ? '/theme/off-bulb.svg' : '/theme/on-bulb.svg'}
+                alt=''
+                width={12}
+                height={12}
+                className='opacity-90'
+              />
+              <ThemeToggle />
+            </div>
+          </div>
+
+          {/* Hamburger / Close */}
+          <button
+            type='button'
+            className='inline-flex items-center justify-center p-2 text-foreground'
+            onClick={() => setIsOpen((open) => !open)}
+            aria-expanded={isOpen}
+            aria-controls='mobile-navigation'
+            aria-haspopup='menu'
+          >
+            {isOpen ? (
+              <X size={24} weight='regular' />
+            ) : (
+              <List size={24} weight='regular' />
+            )}
+          </button>
+        </div>
       </Container>
 
       <div
@@ -71,7 +115,7 @@ export function Navbar() {
           isOpen ? 'block' : 'hidden',
         )}
       >
-        <Container className='section-grid py-4'>
+        <Container className='section-grid py-4 gap-6'>
           <nav className='section-grid'>
             {links.map((link) => (
               <NavLink
@@ -84,21 +128,20 @@ export function Navbar() {
             ))}
           </nav>
 
-          <div className='flex flex-wrap items-center gap-3'>
-            {localeOptions.map((option) => (
-              <Link
-                key={option.value}
-                href={pathname}
-                locale={option.value}
-                className={buttonClasses({
-                  variant: locale === option.value ? 'gold' : 'secondary',
-                  className: 'min-w-[72px]',
-                })}
-                onClick={() => setIsOpen(false)}
-              >
-                {option.label}
-              </Link>
-            ))}
+          <div className='flex flex-col items-start gap-4'>
+            <div className='section-grid gap-1'>
+              <span className='text-[10px] uppercase tracking-[0.18em] text-muted-foreground'>
+                Language
+              </span>
+              <LanguageSwitcher />
+            </div>
+
+            <div className='section-grid gap-1'>
+              <span className='text-[10px] uppercase tracking-[0.18em] text-muted-foreground'>
+                Theme
+              </span>
+              <ThemeToggle />
+            </div>
           </div>
         </Container>
       </div>

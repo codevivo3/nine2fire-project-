@@ -22,7 +22,7 @@ export function BrandLogo({ className }: BrandLogoProps) {
       aria-label="Nine2Fire"
     >
       <Image
-        className="logo-light h-auto w-42"
+        className="logo-light h-auto w-38"
         src="/logo/nine2fire-logo-text-dark-mode.svg"
         alt="Nine2Fire"
         width={158}
@@ -30,7 +30,7 @@ export function BrandLogo({ className }: BrandLogoProps) {
         priority
       />
       <Image
-        className="logo-dark h-auto w-42"
+        className="logo-dark h-auto w-38"
         src="/logo/nine2fire-logo-text-light-mode.svg"
         alt="Nine2Fire"
         width={158}

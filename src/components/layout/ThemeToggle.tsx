@@ -13,7 +13,6 @@
  */
 
 import * as React from 'react';
-import Image from 'next/image';
 import {
   applyTheme,
   getSystemTheme,
@@ -97,13 +96,6 @@ export function ThemeToggle() {
       }}
     >
       <span className='relative inline-flex h-full w-full items-center'>
-        <Image
-          src='/theme/off-bulb.svg'
-          alt=''
-          width={4}
-          height={4}
-          className='pointer-events-none absolute left-1/8 top-1/2 h-4 w-4 -translate-y-1/2 opacity-80'
-        />
         <span
           className='relative z-10 inline-flex h-4.5 w-4.5 items-center justify-center rounded-full transition-all duration-[150ms]'
           style={{
@@ -142,13 +134,6 @@ export function ThemeToggle() {
             />
           </span>
         </span>
-        <Image
-          src='/theme/on-bulb.svg'
-          alt=''
-          width={4}
-          height={4}
-          className='pointer-events-none absolute right-1/8 top-1/2 h-4 w-4 -translate-y-1/2 opacity-80'
-        />
       </span>
     </button>
   );

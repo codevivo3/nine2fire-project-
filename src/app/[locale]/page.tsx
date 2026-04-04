@@ -8,9 +8,9 @@
  * - Section ordering here defines the narrative flow for every supported locale
  */
 import { setRequestLocale } from "next-intl/server";
-import { CTA } from "@/components/sections/CTA";
 import { Hero } from "@/components/sections/Hero";
 import { Insights } from "@/components/sections/Insights";
+import { NewsletterSection } from "@/components/sections/NewsletterSection";
 import { Roadmap } from "@/components/sections/Roadmap";
 import { ValueProps } from "@/components/sections/ValueProps";
 import type { AppLocale } from "@/i18n/routing";
@@ -29,7 +29,7 @@ export default async function LandingPage({ params }: LandingPageProps) {
       <ValueProps />
       <Roadmap />
       <Insights />
-      <CTA />
+      <NewsletterSection />
     </main>
   );
 }
