@@ -10,7 +10,7 @@
  * NOTES:
  * - Tokens first, components consume tokens (never raw colors)
  * - No hardcoded colors in components
- * - Theme switching is handled via `:root` defaults and `html.light` overrides
+ * - Theme switching is handled via `html.light` and `html.dark`
  */
 
 @import 'tailwindcss';
@@ -20,7 +20,8 @@
    1. ROOT TOKENS (DEFAULT = LIGHT THEME)
    ========================================================= */
 
-:root {
+html,
+html.light {
   /* Core palette */
   --color-bg: #d6f3c4;
   --color-fg: #28282b;

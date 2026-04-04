@@ -10,9 +10,12 @@
  * - `lang` is resolved from next-intl at render time to keep SSR output aligned
  */
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
 import { getLocale } from "next-intl/server";
 import { Manrope } from "next/font/google";
+import { THEME_STORAGE_KEY } from "@/lib/theme";
 import "./globals.css";
+import Script from "next/script";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -81,6 +84,56 @@ export default async function RootLayout({
 }>) {
   // Falls back when locale resolution happens outside a localized segment.
   const locale = await getLocale().catch(() => "en");
+  const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
+  const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+  const themeScript = `
+    (function () {
+      var storageKey = ${JSON.stringify(THEME_STORAGE_KEY)};
+      var storedTheme = null;
+
+      try {
+        var value = window.localStorage.getItem(storageKey);
+        if (value === "light" || value === "dark" || value === "system") {
+          storedTheme = value;
+        }
+      } catch {}
+
+      var systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+
+      var theme;
+      if (!storedTheme || storedTheme === "system") {
+        theme = systemTheme;
+      } else {
+        theme = storedTheme;
+      }
+
+      var root = document.documentElement;
+
+      root.classList.remove("light", "dark");
+      root.classList.add(theme);
+      root.setAttribute("data-theme", theme);
+      // React to system theme changes only if user preference is "system" or not set
+      try {
+        var media = window.matchMedia("(prefers-color-scheme: dark)");
+        media.addEventListener("change", function () {
+          var stored = null;
+          try {
+            var value = window.localStorage.getItem(storageKey);
+            if (value === "light" || value === "dark" || value === "system") {
+              stored = value;
+            }
+          } catch {}
+
+          if (!stored || stored === "system") {
+            var newTheme = media.matches ? "dark" : "light";
+            root.classList.remove("light", "dark");
+            root.classList.add(newTheme);
+            root.setAttribute("data-theme", newTheme);
+          }
+        });
+      } catch {}
+    })();
+  `;
 
   return (
     <html
@@ -88,8 +141,37 @@ export default async function RootLayout({
       className={`${manrope.variable} h-full scroll-smooth antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        {plausibleDomain ? (
+          <script
+            defer
+            data-domain={plausibleDomain}
+            src="https://plausible.io/js/script.js"
+          />
+        ) : null}
+      </head>
       <body className="min-h-full text-foreground font-sans">
         {children}
+        {GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_ID}', {
+                  page_path: window.location.pathname,
+                });
+              `}
+            </Script>
+          </>
+        )}
+        <Analytics />
       </body>
     </html>
   );

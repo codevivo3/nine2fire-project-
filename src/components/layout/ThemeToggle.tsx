@@ -14,29 +14,26 @@
 
 import * as React from 'react';
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
+import {
+  applyTheme,
+  getSystemTheme,
+  THEME_EVENT,
+  type ThemeMode,
+} from '@/lib/theme';
 
-type ThemeMode = 'light' | 'dark';
-
-// Broadcasts theme updates so separate controls stay in sync.
-const THEME_EVENT = 'nine2fire-theme-change';
-
-// Reads the current theme from the document root, which is the single source of truth.
 function getTheme(): ThemeMode {
-  if (typeof document === 'undefined') return 'dark';
+  if (typeof document === 'undefined') return 'light';
   return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
 }
 
 // Exposes the current theme and a synchronized toggle action for UI controls.
 export function useTheme() {
   const [theme, setTheme] = React.useState<ThemeMode>('light');
-  React.useEffect(() => {
-    const current = getTheme();
-    setTheme(current);
 
-    if (current === 'dark') {
-      document.documentElement.classList.add('dark');
-    }
+  React.useEffect(() => {
+    const systemTheme = getSystemTheme();
+    applyTheme(systemTheme);
+    setTheme(systemTheme);
   }, []);
 
   React.useEffect(() => {
@@ -46,15 +43,27 @@ export function useTheme() {
     return () => window.removeEventListener(THEME_EVENT, sync);
   }, []);
 
+  React.useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const syncSystemTheme = () => {
+      // Always follow system unless user manually toggles in-session
+
+      const currentTheme = getSystemTheme();
+      applyTheme(currentTheme);
+      window.dispatchEvent(new Event(THEME_EVENT));
+      setTheme(currentTheme);
+    };
+
+    syncSystemTheme();
+    mediaQuery.addEventListener('change', syncSystemTheme);
+
+    return () => mediaQuery.removeEventListener('change', syncSystemTheme);
+  }, []);
+
   // Updates the root class and notifies other listeners in the same session.
   const setMode = (next: ThemeMode) => {
-    if (typeof document === 'undefined') return;
-
-    const html = document.documentElement;
-
-    if (next === 'dark') html.classList.add('dark');
-    else html.classList.remove('dark');
-
+    // Do NOT persist — override is session-only
+    applyTheme(next);
     window.dispatchEvent(new Event(THEME_EVENT));
     setTheme(next);
   };
@@ -72,8 +81,6 @@ export function useTheme() {
 }
 
 export function ThemeToggle() {
-  const t = useTranslations('Navigation');
-
   const { isLight, toggleTheme } = useTheme();
 
   // The switch keeps the motion on transforms so the control does not shift layout.

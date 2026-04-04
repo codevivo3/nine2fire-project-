@@ -1,0 +1,27 @@
+{
+  "Disclaimer": {
+    "eyebrow": "Legal",
+    "title": "Disclaimer",
+    "intro": "Nine2Fire shares ideas about money, systems, and financial independence. Read it as educational content, not as instructions for your personal finances.",
+    "noFinancialAdvice": {
+      "title": "No financial advice",
+      "body": "Nothing on this site is financial, investment, tax, or legal advice. Nothing here creates an advisor-client relationship."
+    },
+    "educationalOnly": {
+      "title": "Educational purposes only",
+      "body": "All content is provided for general education and discussion. It is meant to help you think more clearly, not to replace professional advice."
+    },
+    "noGuarantees": {
+      "title": "No guarantees of results",
+      "body": "Markets move, personal situations change, and outcomes vary. Past results, examples, or projections are not promises of future performance."
+    },
+    "personalResponsibility": {
+      "title": "Personal responsibility",
+      "body": "You are responsible for the decisions you make with your money. Before acting on anything you read here, review your own situation and speak with a qualified professional when needed."
+    },
+    "externalLinks": {
+      "title": "External links disclaimer",
+      "body": "This site may link to third-party websites for reference or convenience. Nine2Fire does not control those sites and is not responsible for their content, accuracy, or policies."
+    }
+  }
+}

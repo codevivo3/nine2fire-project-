@@ -30,6 +30,7 @@ export function Footer() {
   ];
 
   const legalLinks = [
+    { href: '/disclaimer', label: t('legal.disclaimer') },
     { href: '/', label: t('legal.privacy') },
     { href: '/', label: t('legal.terms') },
   ];
