@@ -1,0 +1,98 @@
+/**
+ * FILE: src/components/blog/BlogCard.tsx
+ *
+ * COMPONENT: BlogCard
+ *
+ * PURPOSE:
+ * - Displays editorial post previews using the shared blog model
+ * - Keeps blog UI independent from the temporary local data layer so a CMS swap does not require component rewrites
+ *
+ * NOTES:
+ * - Styling stays intentionally light and non-card-based
+ * - Variant rendering supports index, tag, and future CMS-backed listing surfaces
+ */
+import Image from "next/image";
+import { Link } from "@/i18n/navigation";
+import { formatPostDate } from "@/lib/blog/formatPostDate";
+import type { Post } from "@/lib/blog/types";
+
+type BlogCardVariant = "latest" | "archive";
+
+type BlogCardProps = {
+  post: Post;
+  locale?: string;
+  variant?: BlogCardVariant;
+};
+
+export function BlogCard({
+  post,
+  locale = "en",
+  variant = "latest",
+}: BlogCardProps) {
+  if (variant === "archive") {
+    return (
+      <Link
+        href={`/blog/${post.slug}`}
+        className="flex items-baseline justify-between gap-4 border-t border-border/50 py-4 transition-opacity duration-200 hover:opacity-70"
+      >
+        <h3 className="text-sm font-medium leading-snug">{post.title}</h3>
+        <p className="shrink-0 text-xs text-muted-foreground">
+          {formatPostDate(post.date, locale)}
+        </p>
+      </Link>
+    );
+  }
+
+  return (
+    <article className="border-t border-border/50 py-8 first:border-t-0 first:pt-0">
+      <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
+        <div className="min-w-0 flex-1 space-y-3">
+          <Link
+            href={`/blog/${post.slug}`}
+            className="block space-y-3 transition-opacity duration-200 hover:opacity-75"
+          >
+            <h3 className="text-2xl font-semibold tracking-[-0.02em] text-foreground">
+              {post.title}
+            </h3>
+
+            <p className="text-sm text-muted-foreground">
+              {formatPostDate(post.date, locale)}
+              {post.readingTime ? ` • ${post.readingTime}` : ""}
+            </p>
+
+            <p className="max-w-2xl text-sm leading-6 text-foreground/85">
+              {post.excerpt}
+            </p>
+          </Link>
+
+          <div className="flex flex-wrap gap-x-3 gap-y-2 text-xs text-muted-foreground">
+            {post.tags.map((tag) => (
+              <Link
+                key={tag}
+                href={`/blog/tag/${encodeURIComponent(tag)}`}
+                className="transition-colors duration-200 hover:text-foreground"
+              >
+                #{tag}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {post.coverImage ? (
+          <Link
+            href={`/blog/${post.slug}`}
+            className="order-first overflow-hidden rounded-sm md:order-none md:w-32 md:shrink-0"
+          >
+            <Image
+              src={post.coverImage}
+              alt=""
+              width={160}
+              height={120}
+              className="h-24 w-full object-cover md:h-20"
+            />
+          </Link>
+        ) : null}
+      </div>
+    </article>
+  );
+}

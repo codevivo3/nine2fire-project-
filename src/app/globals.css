@@ -136,20 +136,23 @@ body {
 html::before {
   content: '';
   position: fixed;
-  inset: 0;
+  top: -80px;
+  right: 0;
+  bottom: -80px;
+  left: 0;
   pointer-events: none;
 
   background-image: var(--bg-pattern);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center top;
-  background-attachment: fixed;
 
   /* Keep the pattern visible without competing with content surfaces. */
   opacity: 0.05;
   z-index: 0;
 
   will-change: transform;
+  transform: translateZ(0);
   animation: parallax linear both;
   animation-timeline: scroll();
   animation-range: 0% 100%;

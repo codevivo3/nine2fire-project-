@@ -39,6 +39,7 @@ export function Navbar() {
     { href: '/#approach', label: t('links.approach') },
     { href: '/#roadmap', label: t('links.roadmap') },
     { href: '/#insights', label: t('links.insights') },
+    { href: '/blog', label: t('links.journal') },
   ];
 
   return (
@@ -99,11 +100,25 @@ export function Navbar() {
             aria-controls='mobile-navigation'
             aria-haspopup='menu'
           >
-            {isOpen ? (
-              <X size={24} weight='regular' />
-            ) : (
-              <List size={24} weight='regular' />
-            )}
+            <span className="relative inline-flex h-6 w-6">
+              <span
+                className={cn(
+                  "absolute inset-0 flex items-center justify-center transition-all duration-200 ease-out",
+                  isOpen ? "opacity-0 scale-90" : "opacity-100 scale-100"
+                )}
+              >
+                <List size={24} weight="regular" />
+              </span>
+
+              <span
+                className={cn(
+                  "absolute inset-0 flex items-center justify-center transition-all duration-200 ease-out",
+                  isOpen ? "opacity-100 scale-100" : "opacity-0 scale-90"
+                )}
+              >
+                <X size={24} weight="regular" />
+              </span>
+            </span>
           </button>
         </div>
       </Container>

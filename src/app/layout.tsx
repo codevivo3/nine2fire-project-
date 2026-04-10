@@ -151,7 +151,7 @@ export default async function RootLayout({
           />
         ) : null}
       </head>
-      <body className="min-h-full text-foreground font-sans">
+      <body className="min-h-full text-foreground font-sans before:content-[''] before:fixed before:inset-[-32px] before:-z-10 before:bg-[var(--background-pattern)] before:bg-cover before:bg-center before:bg-no-repeat">
         {children}
         {GA_ID && (
           <>

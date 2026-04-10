@@ -1,0 +1,133 @@
+/**
+ * FILE: src/app/[locale]/blog/page.tsx
+ *
+ * PAGE: Blog Index
+ *
+ * ROUTE:
+ * - /[locale]/blog
+ *
+ * PURPOSE:
+ * - Lists the available blog posts using a featured, latest, and archive editorial hierarchy
+ * - Acts as the localized entry point for long-form content while staying independent from the temporary local data source
+ *
+ * NOTES:
+ * - This route is designed to keep working when local data is replaced by Sanity
+ * - Presentation logic stays here and in shared blog components, not in the storage layer
+ */
+import Image from "next/image";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { BlogList } from "@/components/blog/BlogList";
+import { Link } from "@/i18n/navigation";
+import { getPosts } from "@/lib/blog/getPosts";
+import { formatPostDate } from "@/lib/blog/formatPostDate";
+import type { AppLocale } from "@/i18n/routing";
+
+type BlogPageProps = {
+  params: Promise<{ locale: AppLocale }>;
+};
+
+export default async function BlogPage({ params }: BlogPageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("Blog");
+
+  const posts = getPosts();
+  const [featuredPost, ...remainingPosts] = posts;
+  const latestPosts = remainingPosts.slice(0, 3);
+  const archivePosts = remainingPosts.slice(3);
+
+  const sectionLabelClassName =
+    "pl-[4px] text-sm font-semibold uppercase tracking-[0.18em] text-accent-eyebrow-token opacity-90";
+
+  return (
+    <main className='mx-auto max-w-5xl space-y-20 px-4 py-16 md:px-6 md:py-24'>
+      <header className='max-w-2xl space-y-4'>
+        <p className={sectionLabelClassName}>{t("eyebrow")}</p>
+        <h1 className='text-4xl font-semibold tracking-[-0.04em] text-foreground md:text-6xl'>
+          {t("title")}
+        </h1>
+        <p className='max-w-xl text-sm leading-6 text-muted-foreground'>{t("description")}</p>
+      </header>
+
+      {featuredPost ? (
+        <section className='space-y-6'>
+          <div className='flex items-center justify-between gap-4 border-b border-border/50 pb-4'>
+            <h2 className={sectionLabelClassName}>{t("sections.featured")}</h2>
+          </div>
+
+          <article className='grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_280px] lg:items-start'>
+            <div className='space-y-5'>
+              <p className='text-sm text-muted-foreground'>
+                {formatPostDate(featuredPost.date, locale)}
+                {featuredPost.readingTime
+                  ? ` • ${featuredPost.readingTime}`
+                  : ''}
+              </p>
+
+              <Link
+                href={`/blog/${featuredPost.slug}`}
+                className='block space-y-5 transition-opacity duration-200 hover:opacity-80'
+              >
+                <h2 className='max-w-3xl text-3xl font-semibold tracking-[-0.04em] text-foreground md:text-5xl'>
+                  {featuredPost.title}
+                </h2>
+
+                <p className='max-w-2xl text-base leading-7 text-foreground/85'>
+                  {featuredPost.excerpt}
+                </p>
+              </Link>
+
+              <div className='flex flex-wrap gap-x-4 gap-y-2 text-xs text-muted-foreground'>
+                {featuredPost.tags.map((tag) => (
+                  <Link
+                    key={tag}
+                    href={`/blog/tag/${encodeURIComponent(tag)}`}
+                    className='transition-colors duration-200 hover:text-foreground'
+                  >
+                    #{tag}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {featuredPost.coverImage ? (
+              <Link
+                href={`/blog/${featuredPost.slug}`}
+                className='overflow-hidden rounded-sm'
+              >
+                <Image
+                  src={featuredPost.coverImage}
+                  alt=''
+                  width={560}
+                  height={420}
+                  className='h-full w-full object-cover'
+                  priority
+                />
+              </Link>
+            ) : null}
+          </article>
+        </section>
+      ) : null}
+
+      {latestPosts.length ? (
+        <section className='space-y-6'>
+          <div className='flex items-center justify-between gap-4 border-b border-border/50 pb-4'>
+            <h2 className={sectionLabelClassName}>{t("sections.latest")}</h2>
+          </div>
+
+          <BlogList posts={latestPosts} locale={locale} variant='latest' />
+        </section>
+      ) : null}
+
+      {archivePosts.length ? (
+        <section className='space-y-6'>
+          <div className='flex items-center justify-between gap-4 border-b border-border/50 pb-4'>
+            <h2 className={sectionLabelClassName}>{t("sections.archive")}</h2>
+          </div>
+
+          <BlogList posts={archivePosts} locale={locale} variant='archive' />
+        </section>
+      ) : null}
+    </main>
+  );
+}

@@ -1,0 +1,12 @@
+{
+  "Blog": {
+    "eyebrow": "Journal",
+    "title": "Riflessioni misurate su denaro, sistemi e sulla forma di una vita piu calma.",
+    "description": "Pensieri lucidi su denaro, decisioni e tempo.",
+    "sections": {
+      "featured": "In Evidenza",
+      "latest": "Ultimi Articoli",
+      "archive": "Archivio"
+    }
+  }
+}
