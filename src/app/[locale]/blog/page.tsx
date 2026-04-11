@@ -14,13 +14,14 @@
  * - This route is designed to keep working when local data is replaced by Sanity
  * - Presentation logic stays here and in shared blog components, not in the storage layer
  */
-import Image from "next/image";
-import { getTranslations, setRequestLocale } from "next-intl/server";
-import { BlogList } from "@/components/blog/BlogList";
-import { Link } from "@/i18n/navigation";
-import { getPosts } from "@/lib/blog/getPosts";
-import { formatPostDate } from "@/lib/blog/formatPostDate";
-import type { AppLocale } from "@/i18n/routing";
+import Image from 'next/image';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { BlogList } from '@/components/blog/BlogList';
+import { ScrollCue } from '@/components/ui/ScrollCue';
+import { Link } from '@/i18n/navigation';
+import { getPosts } from '@/lib/blog/getPosts';
+import { formatPostDate } from '@/lib/blog/formatPostDate';
+import type { AppLocale } from '@/i18n/routing';
 
 type BlogPageProps = {
   params: Promise<{ locale: AppLocale }>;
@@ -29,7 +30,7 @@ type BlogPageProps = {
 export default async function BlogPage({ params }: BlogPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations("Blog");
+  const t = await getTranslations('Blog');
 
   const posts = getPosts();
   const [featuredPost, ...remainingPosts] = posts;
@@ -37,22 +38,27 @@ export default async function BlogPage({ params }: BlogPageProps) {
   const archivePosts = remainingPosts.slice(3);
 
   const sectionLabelClassName =
-    "pl-[4px] text-sm font-semibold uppercase tracking-[0.18em] text-accent-eyebrow-token opacity-90";
+    'pl-[4px] text-sm font-semibold uppercase tracking-[0.18em] text-accent-eyebrow-token opacity-90';
 
   return (
-    <main className='mx-auto max-w-5xl space-y-20 px-4 py-16 md:px-6 md:py-24'>
-      <header className='max-w-2xl space-y-4'>
-        <p className={sectionLabelClassName}>{t("eyebrow")}</p>
+    <main className='mx-auto max-w-5xl space-y-20 px-4 py-16 md:px-6 md:py-24 2xl:mt-8'>
+      <header className='relative max-w-2xl space-y-4 pt-20 md:pt-28 pb-16'>
+        <p className={sectionLabelClassName}>{t('eyebrow')}</p>
         <h1 className='text-4xl font-semibold tracking-[-0.04em] text-foreground md:text-6xl'>
-          {t("title")}
+          {t('title')}
         </h1>
-        <p className='max-w-xl text-sm leading-6 text-muted-foreground'>{t("description")}</p>
+        <p className='max-w-xl text-sm leading-6 text-muted-foreground/70'>
+          {t('description')}
+        </p>
       </header>
+      <div className='block 2xl:hidden'>
+        <ScrollCue />
+      </div>
 
       {featuredPost ? (
-        <section className='space-y-6'>
+        <section className='space-y-6 2xl:mt-40'>
           <div className='flex items-center justify-between gap-4 border-b border-border/50 pb-4'>
-            <h2 className={sectionLabelClassName}>{t("sections.featured")}</h2>
+            <h2 className={sectionLabelClassName}>{t('sections.featured')}</h2>
           </div>
 
           <article className='grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_280px] lg:items-start'>
@@ -106,13 +112,16 @@ export default async function BlogPage({ params }: BlogPageProps) {
               </Link>
             ) : null}
           </article>
+          <div className='hidden 2xl:flex justify-center mt-12'>
+            <ScrollCue />
+          </div>
         </section>
       ) : null}
 
       {latestPosts.length ? (
-        <section className='space-y-6'>
+        <section className='space-y-6 mt-48 2xl:mt-72'>
           <div className='flex items-center justify-between gap-4 border-b border-border/50 pb-4'>
-            <h2 className={sectionLabelClassName}>{t("sections.latest")}</h2>
+            <h2 className={sectionLabelClassName}>{t('sections.latest')}</h2>
           </div>
 
           <BlogList posts={latestPosts} locale={locale} variant='latest' />
@@ -121,11 +130,13 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
       {archivePosts.length ? (
         <section className='space-y-6'>
-          <div className='flex items-center justify-between gap-4 border-b border-border/50 pb-4'>
-            <h2 className={sectionLabelClassName}>{t("sections.archive")}</h2>
+          <div className='flex items-center justify-between gap-4 mt-32 2xl:mt-40'>
+            <h2 className={sectionLabelClassName}>{t('sections.archive')}</h2>
           </div>
 
-          <BlogList posts={archivePosts} locale={locale} variant='archive' />
+          <div className="-mt-2">
+            <BlogList posts={archivePosts} locale={locale} variant='archive' />
+          </div>
         </section>
       ) : null}
     </main>

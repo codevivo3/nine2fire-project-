@@ -29,7 +29,7 @@ export default async function DisclaimerPage({ params }: DisclaimerPageProps) {
   return (
     <main className="py-16 md:py-24">
       <Container>
-        <article className="mx-auto max-w-3xl rounded-[var(--radius-lg)] border border-border-token bg-surface-strong/85 p-6 backdrop-blur-lg md:p-10">
+        <article className="mx-auto max-w-3xl rounded-[var(--radius-lg)] border border-border-token bg-surface p-6 backdrop-blur-lg md:p-10">
           <header className="section-grid gap-4">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-eyebrow-token">
               {t("eyebrow")}

@@ -41,7 +41,7 @@ export function LanguageSwitcher() {
       className='relative inline-flex h-6 w-12 items-center overflow-hidden rounded-full border border-border-token bg-surface transition-all'
       style={{
         boxShadow: isLight
-          ? 'inset 0 2px 3px rgba(0,0,0,0.7), inset 0 -0.5px 3px var(--color-accent), 0 1.5px 2px 1px var(--color-primary)'
+          ? 'inset 0 2px 3px rgba(0,0,0,0.7), inset 0 -0.5px 3px var(--color-accent), 0 1.5px 2px 1px var(--color-secondary)'
           : 'inset 0 2px 3px rgba(0,0,0,1), inset 0 -2px 2px rgba(255,255,255,0.33), 0 0 3px 1px var(--color-accent)',
       }}
     >

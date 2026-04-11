@@ -23,7 +23,7 @@
 html,
 html.light {
   /* Core palette */
-  --color-bg: #d6f3c4;
+  --color-bg: color-mix(in srgb, white 72%, #d6f3c4 28%);
   --color-fg: #28282b;
 
   /* Semantic tokens */
@@ -36,10 +36,13 @@ html.light {
   --color-highlight: var(--color-accent);
   --color-highlight-text: #28282b;
 
+  /* Text on accent (stable contrast) */
+  --color-on-accent: #28282b;
+
   /* Surfaces & UI layers */
   --color-border: color-mix(in srgb, #738678 42%, #d6f3c4 58%);
-  --color-surface: color-mix(in srgb, white 72%, #d6f3c4 28%);
-  --color-surface-strong: color-mix(in srgb, white 56%, #d6f3c4 44%);
+  --color-surface: #d6f3c4; 
+  --color-surface-strong: #f8f8f4;
 
   /* Text / utility */
   --color-muted: #738678;
@@ -74,12 +77,15 @@ html.dark {
   --color-highlight: var(--color-accent);
   --color-highlight-text: #28282b;
 
+  /* Text on accent (stable contrast) */
+  --color-on-accent: #28282b;
+
   --color-border: color-mix(in srgb, #738678 38%, #28282b 62%);
   --color-surface: color-mix(in srgb, #28282b 88%, #4d5d53 12%);
   --color-surface-strong: color-mix(in srgb, #28282b 74%, #4d5d53 26%);
 
   --color-muted: color-mix(in srgb, #d6f3c4 12%, white 88%);
-  --color-input: color-mix(in srgb, #28282b 78%, #4d5d53 22%);
+  --color-input: color-mix(in srgb, white 64%, #d6f3c4 36%);
 
   /* Pattern swap */
   --bg-pattern: url('/pattern/topographic-pattern-dark-theme.svg');
@@ -162,6 +168,21 @@ html.dark::before {
   opacity: 0.04;
 }
 
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+.animate-float {
+  animation: float 2.5s ease-in-out infinite;
+}
+
 /* =========================================================
    6. GLOBAL INTERACTIONS
    ========================================================= */
@@ -180,14 +201,16 @@ input {
     background-color 160ms ease;
 }
 
-/* Link hover behavior per theme */
-
-html:not(.dark) a:hover {
-  color: var(--color-fg);
+button,
+input[type='submit'],
+input[type='button'],
+input[type='reset'] {
+  cursor: pointer;
 }
 
-html.dark a:not(.link-highlight):hover {
-  color: var(--color-accent);
+button:disabled,
+input:disabled {
+  cursor: not-allowed;
 }
 
 /* =========================================================
@@ -302,4 +325,3 @@ html.dark .logo-dark {
     transform: translateY(80px);
   }
 }
-

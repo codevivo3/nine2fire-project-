@@ -1,53 +1,57 @@
-/**
- * FILE: src/components/ui/Button.tsx
- *
- * PURPOSE:
- * - Provides the shared button primitive and class generator used across the site
- *
- * NOTES:
- * - `buttonClasses` is exported so links and buttons can share the same visual variants
- */
-import type { ButtonHTMLAttributes } from "react";
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
+import Link from 'next/link';
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
 
-type ButtonVariant = "primary" | "secondary" | "gold";
+type Variant = 'gold' | 'secondary';
 
-type ButtonClassOptions = {
-  variant?: ButtonVariant;
+type BaseProps = {
+  variant?: Variant;
   className?: string;
 };
 
-export function buttonClasses({
-  variant = "primary",
-  className,
-}: ButtonClassOptions = {}) {
-  return cn(
-    'inline-flex h-12 items-center justify-center rounded-full border px-5 text-sm font-bold tracking-[-0.01em] transition-all duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] shadow-sm',
-    variant === 'primary' &&
-      'border-primary-token bg-primary-token text-[color:var(--color-fg)] shadow-[var(--shadow-soft)] hover:bg-surface/60 backdrop-blur-sm hover:text-primary-token hover:border-primary-token',
-    variant === 'secondary' &&
-      'border-border-token bg-surface/60 backdrop-blur-sm text-foreground shadow-[var(--shadow-soft)] hover:bg-accent-token hover:!text-[color:var(--color-highlight-text)] hover:border-accent-token',
-    variant === 'gold' &&
-      'border-accent-token bg-accent-token text-primary-token shadow-[var(--shadow-soft)] hover:bg-surface/60 backdrop-blur-sm hover:text-foreground hover:border-accent-token',
-    className,
-  );
+type ButtonAsButton = BaseProps &
+  ButtonHTMLAttributes<HTMLButtonElement> & {
+    href?: undefined;
+  };
+
+type ButtonAsLink = BaseProps &
+  AnchorHTMLAttributes<HTMLAnchorElement> & {
+    href: string;
+  };
+
+type ButtonProps = ButtonAsButton | ButtonAsLink;
+
+function getClasses(variant: Variant = 'gold') {
+  const base =
+    'inline-flex h-12 cursor-pointer items-center justify-center rounded-full border px-5 text-sm font-bold tracking-tight transition-all duration-200';
+
+  const gold =
+    'border-accent-token bg-accent-token text-[color:var(--color-on-accent)] hover:bg-secondary-token hover:text-[color:var(--color-on-accent)] dark:hover:text-accent-token';
+
+  const secondary =
+    'border-border-token bg-secondary-token text-foreground hover:bg-accent-token hover:text-[color:var(--color-highlight-text)] dark:text-accent-token dark:hover:text-[color:var(--color-highlight-text)]';
+
+  return cn(base, variant === 'gold' ? gold : secondary);
 }
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: ButtonVariant;
-};
-
 export function Button({
-  variant = "primary",
+  variant = 'gold',
   className,
-  type = "button",
   ...props
 }: ButtonProps) {
+  const classes = cn(getClasses(variant), className);
+
+  if ('href' in props && props.href) {
+    return <Link {...props} href={props.href} className={classes} />;
+  }
+
+  const { type, ...buttonProps } = props as ButtonAsButton;
+
   return (
     <button
-      type={type}
-      className={buttonClasses({ variant, className })}
-      {...props}
+      {...buttonProps}
+      type={type ?? 'button'}
+      className={classes}
     />
   );
 }

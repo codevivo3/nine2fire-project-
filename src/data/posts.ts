@@ -23,7 +23,6 @@ export const posts: Post[] = [
       "Financial freedom is usually framed as an exit. Nine2Fire works better as a practice: build systems, widen margin, and let time compound in your favor.",
     content: `
 Most people treat financial independence like an escape plan.
-
 That framing creates urgency without structure.
 
 Nine2Fire is better understood as a discipline. The point is not to flee work. The point is to build a life that can absorb volatility without panic.

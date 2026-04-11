@@ -11,8 +11,8 @@
 import { useTranslations } from 'next-intl';
 import { BrandLogo } from '@/components/layout/BrandLogo';
 import { Container } from '@/components/ui/Container';
-
 import { NavLink } from '@/components/ui/NavLink';
+import { mainNavLinks } from '@/config/navigation';
 import {
   FaXTwitter,
   FaInstagram,
@@ -22,12 +22,7 @@ import {
 
 export function Footer() {
   const t = useTranslations('Footer');
-
-  const navLinks = [
-    { href: '/#approach', label: t('navigation.approach') },
-    { href: '/#roadmap', label: t('navigation.roadmap') },
-    { href: '/#insights', label: t('navigation.insights') },
-  ];
+  const navT = useTranslations('Navigation');
 
   const legalLinks = [
     { href: '/disclaimer', label: t('legal.disclaimer') },
@@ -65,9 +60,9 @@ export function Footer() {
             {t('navTitle')}
           </p>
           <div className='section-grid gap-3'>
-            {navLinks.map((link) => (
-              <NavLink key={link.label} href={link.href} className="inline-block w-fit">
-                {link.label}
+            {mainNavLinks.map((link) => (
+              <NavLink key={link.href} href={link.href} className="inline-block w-fit">
+                {navT(link.labelKey)}
               </NavLink>
             ))}
           </div>

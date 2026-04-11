@@ -55,19 +55,22 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       date={post.date}
       locale={locale}
       readingTime={post.readingTime}
+      imageSrc={post.coverImage}
+      excerpt={post.excerpt}
+      tags={post.tags}
     >
-      <div className="mt-6 md:mt-10" />
-      <div className="mt-8 pt-8 border-t border-border/40 space-y-5 max-w-3xl">
-        {paragraphs.map((paragraph, index) => (
+      <div className="mt-6 space-y-4 max-w-[680px]">
+        {paragraphs.map((paragraph) => (
           <p
             key={paragraph}
-            className={
-              index === 0
-                ? "text-xl text-foreground/95 max-w-xl leading-relaxed tracking-tight"
-                : "max-w-2xl text-[15px] leading-6 text-foreground/85 tracking-tight"
-            }
+            className="text-[15px] leading-7 text-foreground/90"
           >
-            {paragraph}
+            {paragraph.split("\n").map((line, i, arr) => (
+              <span key={i}>
+                {line}
+                {i < arr.length - 1 && <br />}
+              </span>
+            ))}
           </p>
         ))}
       </div>

@@ -8,9 +8,8 @@
  * - CTA links target in-page anchors so the landing page stays a single focused flow
  */
 import { useTranslations } from "next-intl";
-import { buttonClasses } from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { Link } from "@/i18n/navigation";
 
 export function Hero() {
   const t = useTranslations("Hero");
@@ -32,18 +31,12 @@ export function Hero() {
           </div>
 
           <div className='flex flex-col gap-3 sm:flex-row'>
-            <Link
-              href='/#insights'
-              className={buttonClasses({ variant: 'gold' })}
-            >
+            <Button href='/#insights' variant='gold'>
               {t('primaryCta')}
-            </Link>
-            <Link
-              href='/#roadmap'
-              className={buttonClasses({ variant: 'secondary' })}
-            >
+            </Button>
+            <Button href='/#roadmap' variant='secondary'>
               {t('secondaryCta')}
-            </Link>
+            </Button>
           </div>
         </div>
 

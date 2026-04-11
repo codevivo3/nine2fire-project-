@@ -22,7 +22,7 @@ export function NewsletterSection() {
   return (
     <section>
       <Container className='py-16 md:py-24'>
-        <div className='rounded-[var(--radius-lg)] border border-border-token bg-surface-strong/85 p-6 backdrop-blur-lg md:p-10'>
+        <div className='rounded-[var(--radius-lg)] border border-border-token bg-surface p-6 backdrop-blur-lg md:p-10'>
           <div className='section-grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(280px,420px)] md:items-end'>
             <div className='section-grid gap-4'>
               <p className='text-xs font-semibold uppercase tracking-[0.18em] text-accent-eyebrow-token'>
@@ -78,7 +78,7 @@ export function NewsletterSection() {
                 type='email'
                 required
                 placeholder={t('emailPlaceholder')}
-                className='h-12 rounded-full border border-border-token bg-surface/60 backdrop-blur-sm px-5 text-sm text-foreground outline-none placeholder:text-muted focus:border-accent-token'
+                className='h-12 rounded-full border border-border-token bg-input backdrop-blur-sm px-5 text-sm outline-none placeholder:text-primary-token focus:border-accent-token'
               />
               <Button
                 type='submit'
@@ -90,12 +90,12 @@ export function NewsletterSection() {
               </Button>
 
               {isSuccess && (
-                <p className='text-sm text-accent-token'>You&apos;re in. Check your inbox.</p>
+                <p className='text-sm text-accent-token'>
+                  You&apos;re in. Check your inbox.
+                </p>
               )}
 
-              {error && (
-                <p className='text-sm text-red-500'>{error}</p>
-              )}
+              {error && <p className='text-sm text-red-500'>{error}</p>}
             </form>
           </div>
         </div>
