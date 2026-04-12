@@ -1,25 +1,25 @@
 {
   "Roadmap": {
     "eyebrow": "Roadmap",
-    "title": "A clear sequence beats a crowded dashboard.",
-    "description": "The product can grow in measured layers. Each phase adds structure without diluting the brand or the interface.",
+    "title": "Each step builds what the next one carries forward.",
+    "description": "A sequence holds what would otherwise drift.",
     "stepLabel": "Step {index}",
     "steps": {
-      "audit": {
-        "title": "Map the essentials",
-        "description": "Define the core pages, token system, copy blocks, and message structure before adding moving parts."
+      "spending": {
+        "title": "Spending",
+        "description": "Spending patterns define financial direction."
       },
-      "design": {
-        "title": "Set the design language",
-        "description": "Lock typography, color behavior, spacing rules, and component patterns so future sections inherit the same standard."
+      "structure": {
+        "title": "Structure",
+        "description": "Structure prevents drift."
       },
-      "automation": {
-        "title": "Add useful tools",
-        "description": "Introduce calculators, newsletter flows, and AI-assisted features only when the content and navigation framework are stable."
+      "capital": {
+        "title": "Capital",
+        "description": "Capital grows when it is allowed to stay."
       },
-      "review": {
-        "title": "Refine the system",
-        "description": "Tighten the details, simplify what drifts, and keep the brand clear as the platform expands."
+      "time": {
+        "title": "Time",
+        "description": "Time compounds what remains consistent."
       }
     }
   }

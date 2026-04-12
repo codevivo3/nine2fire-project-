@@ -1,0 +1,41 @@
+{
+  "Privacy": {
+    "title": "Privacy Policy",
+    "intro": "This site collects limited data to operate, improve, and communicate updates. The goal is clarity, not exploitation.",
+
+    "dataCollection": {
+      "title": "Data collected",
+      "body": "This site may collect personal information such as your email address when you voluntarily subscribe to updates. Basic usage data may also be collected automatically through analytics tools."
+    },
+
+    "usage": {
+      "title": "How data is used",
+      "body": "Your email is used to send occasional updates. Usage data is used to understand how the site is accessed and to improve the experience. Data is not sold or used for advertising purposes."
+    },
+
+    "analytics": {
+      "title": "Analytics",
+      "body": "This site may use analytics services such as Google Analytics or similar tools. These services collect anonymized usage data such as pages visited, device type, and general location. This helps understand how the site is used."
+    },
+
+    "thirdParties": {
+      "title": "Third-party services",
+      "body": "Some data may be processed by third-party providers such as email delivery services or analytics platforms. These providers handle data according to their own privacy policies."
+    },
+
+    "dataStorage": {
+      "title": "Data storage",
+      "body": "Data is stored only as long as necessary to provide the intended service. You may request deletion of your data at any time."
+    },
+
+    "rights": {
+      "title": "Your rights",
+      "body": "If you are located in the European Union, you have the right to access, correct, or delete your personal data. You may also withdraw consent at any time."
+    },
+
+    "contact": {
+      "title": "Contact",
+      "body": "For any privacy-related request, you can contact the site owner through the available contact channels."
+    }
+  }
+}

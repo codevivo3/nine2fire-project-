@@ -16,6 +16,7 @@ import { notFound } from "next/navigation";
 import { hasLocale } from "use-intl";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
+import { CookieBanner } from "@/components/ui/CookieBanner";
 import { loadMessages } from "@/i18n/loadMessages";
 import { routing, type AppLocale } from "@/i18n/routing";
 
@@ -71,6 +72,7 @@ export default async function LocaleLayout({
         <Navbar />
         {children}
         <Footer />
+        <CookieBanner />
       </div>
     </NextIntlClientProvider>
   );

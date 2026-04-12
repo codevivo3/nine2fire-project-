@@ -1,0 +1,36 @@
+{
+  "Terms": {
+    "title": "Terms of Service",
+    "intro": "These terms define how this site is used. The goal is clarity and fair use, not restriction.",
+
+    "usage": {
+      "title": "Use of content",
+      "body": "Content on this site is provided for informational purposes only. You may read and share it for personal use, but not misuse or misrepresent it."
+    },
+
+    "intellectualProperty": {
+      "title": "Intellectual property",
+      "body": "All content, including text and design, belongs to Nine2Fire unless otherwise stated. It may not be reproduced or distributed without permission."
+    },
+
+    "limitations": {
+      "title": "Limitations",
+      "body": "Content is provided as-is, without guarantees of accuracy or completeness. It is not intended as professional advice."
+    },
+
+    "liability": {
+      "title": "Liability",
+      "body": "The site owner is not liable for any loss or damage resulting from the use of this site or reliance on its content."
+    },
+
+    "changes": {
+      "title": "Changes",
+      "body": "These terms may be updated over time. Continued use of the site implies acceptance of any changes."
+    },
+
+    "contact": {
+      "title": "Contact",
+      "body": "For any questions regarding these terms, you can contact the site owner through the available channels."
+    }
+  }
+}

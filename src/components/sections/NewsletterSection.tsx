@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 
 export function NewsletterSection() {
-  const t = useTranslations("CTA");
+  const t = useTranslations('Newsletter');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);

@@ -1,0 +1,41 @@
+{
+  "Privacy": {
+    "title": "Informativa sulla privacy",
+    "intro": "Questo sito raccoglie dati limitati per funzionare, migliorare e comunicare aggiornamenti. L’obiettivo è la chiarezza, non lo sfruttamento.",
+
+    "dataCollection": {
+      "title": "Dati raccolti",
+      "body": "Questo sito può raccogliere dati personali come il tuo indirizzo email quando ti iscrivi volontariamente agli aggiornamenti. Dati di utilizzo di base possono anche essere raccolti automaticamente tramite strumenti di analisi."
+    },
+
+    "usage": {
+      "title": "Come vengono usati i dati",
+      "body": "La tua email viene usata per inviare aggiornamenti occasionali. I dati di utilizzo servono a capire come il sito viene consultato e a migliorare l’esperienza. I dati non vengono venduti né usati per finalità pubblicitarie."
+    },
+
+    "analytics": {
+      "title": "Analisi statistiche",
+      "body": "Questo sito può usare servizi di analisi come Google Analytics o strumenti simili. Questi servizi raccolgono dati d’uso anonimizzati come pagine visitate, tipo di dispositivo e posizione generale. Questo aiuta a capire come il sito viene utilizzato."
+    },
+
+    "thirdParties": {
+      "title": "Servizi di terze parti",
+      "body": "Alcuni dati possono essere trattati da fornitori terzi come servizi di invio email o piattaforme di analisi. Questi fornitori gestiscono i dati secondo le proprie informative sulla privacy."
+    },
+
+    "dataStorage": {
+      "title": "Conservazione dei dati",
+      "body": "I dati vengono conservati solo per il tempo necessario a fornire il servizio previsto. Puoi richiedere la cancellazione dei tuoi dati in qualsiasi momento."
+    },
+
+    "rights": {
+      "title": "I tuoi diritti",
+      "body": "Se ti trovi nell’Unione Europea, hai il diritto di accedere, correggere o cancellare i tuoi dati personali. Puoi anche revocare il consenso in qualsiasi momento."
+    },
+
+    "contact": {
+      "title": "Contatti",
+      "body": "Per qualsiasi richiesta relativa alla privacy, puoi contattare il proprietario del sito tramite i canali di contatto disponibili."
+    }
+  }
+}

@@ -2,9 +2,9 @@
   "Navigation": {
     "links": {
       "approach": "Approccio",
-      "roadmap": "Roadmap",
-      "insights": "Insight",
-      "journal": "Journal"
+      "roadmap": "Strategia",
+      "insights": "Approfondimenti",
+      "journal": "Appunti"
     },
     "openMenu": "Menu",
     "closeMenu": "Chiudi",

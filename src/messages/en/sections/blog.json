@@ -1,11 +1,11 @@
 {
   "Blog": {
     "eyebrow": "Journal",
-    "title": "Thoughtful notes on money, systems, and the shape of a calmer life.",
-    "description": "Calm thinking about money, decisions, and time.",
+    "title": "Notes on money, systems, and the quiet work behind independence.",
+    "description": "Short, structured thinking on capital, decisions, and time.",
     "sections": {
       "featured": "Featured",
-      "latest": "Latest Entries",
+      "latest": "Latest",
       "archive": "Archive"
     }
   }

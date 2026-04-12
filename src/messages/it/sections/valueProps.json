@@ -1,23 +1,23 @@
 {
   "ValueProps": {
-    "eyebrow": "Perché questa struttura",
-    "title": "Una base pensata per cicli lunghi, non per picchi veloci.",
-    "description": "La prima versione deve restare essenziale, leggibile e pronta a crescere verso editoriale, strumenti, automazioni e flussi assistiti dall'AI.",
+    "eyebrow": "Struttura",
+    "title": "Una base progettata per la capitalizzazione nel tempo.",
+    "description": "I mercati si muovono in cicli. Il tempo fa il resto.",
     "items": {
       "system": {
         "eyebrow": "Sistema",
-        "title": "Un solo linguaggio operativo",
-        "description": "Pagine, strumenti e prodotti futuri possono condividere fin dall'inizio la stessa struttura di spazi, token e contenuti."
+        "title": "Pianifica prima di agire",
+        "description": "I sistemi riducono il bisogno di decidere continuamente."
       },
       "clarity": {
-        "eyebrow": "Chiarezza",
-        "title": "Ogni sezione ha un compito",
-        "description": "La navigazione resta minimale, il copy resta diretto e il layout si estende senza riscrivere le fondamenta."
+        "eyebrow": "Capitale",
+        "title": "Il capitale si muove con la struttura",
+        "description": "L’allocazione rimane intenzionale."
       },
       "rhythm": {
-        "eyebrow": "Ritmo",
-        "title": "Responsive per definizione",
-        "description": "Il sistema nasce mobile-first e mantiene l'allineamento su tablet e desktop senza sembrare un template."
+        "eyebrow": "Tempo",
+        "title": "Il tempo sostiene i risultati",
+        "description": "Il tempo compone quando i modelli si ripetono. \nI risultati si costruiscono lungo i cicli."
       }
     }
   }

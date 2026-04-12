@@ -1,27 +1,7 @@
 {
   "Insights": {
-    "eyebrow": "Editorial structure",
-    "title": "Insight slots ready for real publishing.",
-    "description": "The cards stay simple on purpose. They can later connect to a CMS, editorial workflow, or AI-assisted research flow without changing the page language.",
-    "items": {
-      "journal": {
-        "category": "Journal",
-        "time": "4 min",
-        "title": "What changes when your cash flow has rules.",
-        "description": "A short editorial format for practical observations, not market theater."
-      },
-      "playbook": {
-        "category": "Playbook",
-        "time": "6 min",
-        "title": "A weekly review that keeps decisions small.",
-        "description": "A reusable structure for turning review habits into repeatable outcomes."
-      },
-      "signal": {
-        "category": "Signal",
-        "time": "3 min",
-        "title": "Less data. Better filters.",
-        "description": "A compact format for ideas worth keeping visible between research sessions."
-      }
-    }
+    "eyebrow": "Journal",
+    "title": "Ideas shaped over time.",
+    "description": "Ideas developed in small, consistent iterations."
   }
 }

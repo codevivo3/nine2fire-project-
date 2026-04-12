@@ -26,8 +26,8 @@ export function Footer() {
 
   const legalLinks = [
     { href: '/disclaimer', label: t('legal.disclaimer') },
-    { href: '/', label: t('legal.privacy') },
-    { href: '/', label: t('legal.terms') },
+    { href: '/privacy', label: t('legal.privacy') },
+    { href: '/terms', label: t('legal.terms') },
   ];
 
   // Shared icon-link treatment keeps the contact row visually consistent.

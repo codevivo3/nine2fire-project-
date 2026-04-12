@@ -7,16 +7,17 @@
  * NOTES:
  * - CTA links target in-page anchors so the landing page stays a single focused flow
  */
-import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/Button";
-import { Container } from "@/components/ui/Container";
+import { useTranslations } from 'next-intl';
+import { Button } from '@/components/ui/Button';
+import { Container } from '@/components/ui/Container';
+import { ScrollCue } from '../ui/ScrollCue';
 
 export function Hero() {
-  const t = useTranslations("Hero");
+  const t = useTranslations('Hero');
 
   return (
-    <section className='min-h-screen flex items-center justify-center -mt-16'>
-      <Container className='grid gap-12 py-12 md:gap-16 md:py-16 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] lg:items-end'>
+    <section className='relative min-h-screen 2xl:min-h-[85vh] flex items-start 2xl:mt-72 justify-center'>
+      <Container className='grid gap-12 md:gap-16 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] lg:items-start'>
         <div className='section-grid max-w-3xl gap-8'>
           <div className='section-grid gap-4'>
             <p className='pl-[4px] text-sm font-semibold uppercase tracking-[0.18em] text-accent-eyebrow-token opacity-90'>
@@ -25,7 +26,7 @@ export function Hero() {
             <h1 className='max-w-3xl text-4xl font-extrabold leading-tight tracking-[-0.045em] text-foreground sm:text-5xl md:text-6xl'>
               {t('title')}
             </h1>
-            <p className='max-w-2xl text-base leading-8 text-foreground/72 md:text-lg'>
+            <p className='whitespace-break-spaces max-w-2xl text-base leading-8 text-foreground/72 md:text-lg'>
               {t('description')}
             </p>
           </div>
@@ -68,6 +69,9 @@ export function Hero() {
           </div>
         </div>
       </Container>
+      <div className='mb-56 pointer-events-none absolute bottom-2 left-1/2 hidden -translate-x-1/2 2xl:block'>
+        <ScrollCue />
+      </div>
     </section>
   );
 }

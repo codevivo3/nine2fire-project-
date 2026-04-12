@@ -21,7 +21,7 @@ export function Roadmap() {
         />
 
         <div className='mt-10 grid gap-4 md:mt-12 md:grid-cols-2 xl:grid-cols-4'>
-          {['audit', 'design', 'automation', 'review'].map((step, index) => (
+          {['spending', 'structure', 'capital', 'time'].map((step, index) => (
             <article
               key={step}
               className='rounded-[var(--radius-lg)] border border-border-token bg-surface/80 p-6 backdrop-blur-md'

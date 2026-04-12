@@ -12,7 +12,7 @@ import { Hero } from "@/components/sections/Hero";
 import { Insights } from "@/components/sections/Insights";
 import { NewsletterSection } from "@/components/sections/NewsletterSection";
 import { Roadmap } from "@/components/sections/Roadmap";
-import { ValueProps } from "@/components/sections/ValueProps";
+import { ValueProps } from "@/components/sections/Structure";
 import type { AppLocale } from "@/i18n/routing";
 
 type LandingPageProps = {

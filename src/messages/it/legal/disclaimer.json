@@ -1,0 +1,27 @@
+{
+  "Disclaimer": {
+    "eyebrow": "Legale",
+    "title": "Disclaimer",
+    "intro": "I contenuti sono forniti solo a scopo educativo e informativo e non devono essere usati come base per decisioni finanziarie.",
+    "noFinancialAdvice": {
+      "title": "Nessun consiglio finanziario",
+      "body": "Nulla su questo sito costituisce consulenza finanziaria, di investimento, fiscale o legale, e nulla qui crea un rapporto consulente-cliente."
+    },
+    "educationalOnly": {
+      "title": "Solo a scopo educativo",
+      "body": "Tutti i contenuti sono destinati a educazione generale e discussione e non sostituiscono una consulenza professionale."
+    },
+    "noGuarantees": {
+      "title": "Nessuna garanzia di risultati",
+      "body": "I mercati si muovono, le situazioni personali cambiano e i risultati variano. Risultati passati, esempi o proiezioni non sono promesse di performance future."
+    },
+    "personalResponsibility": {
+      "title": "Responsabilità personale",
+      "body": "Sei l’unico responsabile di qualsiasi decisione presa sulla base di questi contenuti. Prima di agire, valuta la tua situazione e consulta un professionista qualificato quando opportuno."
+    },
+    "externalLinks": {
+      "title": "Limitazione sui link esterni",
+      "body": "Questo sito può contenere link a siti di terze parti per riferimento o comodità. Nine2Fire non controlla tali siti e non è responsabile dei loro contenuti, della loro accuratezza o delle loro policy."
+    }
+  }
+}

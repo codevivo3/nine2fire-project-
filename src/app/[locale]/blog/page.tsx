@@ -42,9 +42,9 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
   return (
     <main className='mx-auto max-w-5xl space-y-20 px-4 py-16 md:px-6 md:py-24 2xl:mt-8'>
-      <header className='relative max-w-2xl space-y-4 pt-20 md:pt-28 pb-16'>
+      <header className='relative max-w-3xl space-y-4 pt-20 md:pt-28 pb-16'>
         <p className={sectionLabelClassName}>{t('eyebrow')}</p>
-        <h1 className='text-4xl font-semibold tracking-[-0.04em] text-foreground md:text-6xl'>
+        <h1 className='whitespace-break-spaces text-4xl font-semibold tracking-[-0.04em] text-foreground md:text-6xl'>
           {t('title')}
         </h1>
         <p className='max-w-xl text-sm leading-6 text-muted-foreground/70'>

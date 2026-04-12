@@ -1,0 +1,10 @@
+{
+  "Newsletter": {
+    "eyebrow": "Resta vicino",
+    "title": "Ricevi la prossima nota quando è pronta.",
+    "description": "Ogni aggiornamento arriva quando la chiarezza è stata raggiunta.",
+    "emailLabel": "Indirizzo email",
+    "emailPlaceholder": "Inserisci la tua email",
+    "button": "Iscriviti alla lista"
+  }
+}

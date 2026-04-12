@@ -1,11 +1,11 @@
 {
   "Blog": {
-    "eyebrow": "Journal",
-    "title": "Riflessioni misurate su denaro, sistemi e sulla forma di una vita piu calma.",
+    "eyebrow": "Appunti",
+    "title": "Note attente su denaro, sistemi e sulla forma di una vita più calma.",
     "description": "Pensieri lucidi su denaro, decisioni e tempo.",
     "sections": {
-      "featured": "In Evidenza",
-      "latest": "Ultimi Articoli",
+      "featured": "In evidenza",
+      "latest": "Ultime note",
       "archive": "Archivio"
     }
   }

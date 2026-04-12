@@ -13,7 +13,7 @@ export function ValueProps() {
 
   return (
     <section id='approach'>
-      <Container className='py-16 md:py-24'>
+      <Container className='pt-8 pb-16 md:pt-12 md:pb-24 2xl:pt-8'>
         <SectionHeader
           eyebrow={t('eyebrow')}
           title={t('title')}
@@ -32,7 +32,7 @@ export function ValueProps() {
               <h3 className='mt-4 text-xl font-bold tracking-[-0.03em] text-foreground'>
                 {t(`items.${item}.title`)}
               </h3>
-              <p className='mt-3 text-sm leading-7 text-foreground/72'>
+              <p className='whitespace-break-spaces mt-3 text-sm leading-7 text-foreground/72'>
                 {t(`items.${item}.description`)}
               </p>
             </article>

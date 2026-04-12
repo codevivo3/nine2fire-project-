@@ -1,27 +1,7 @@
 {
   "Insights": {
-    "eyebrow": "Struttura editoriale",
-    "title": "Spazi insight pronti per una pubblicazione reale.",
-    "description": "Le card restano semplici di proposito. In seguito potranno collegarsi a un CMS, a un workflow editoriale o a un flusso di ricerca assistito dall'AI senza cambiare linguaggio alla pagina.",
-    "items": {
-      "journal": {
-        "category": "Journal",
-        "time": "4 min",
-        "title": "Cosa cambia quando il cash flow ha regole.",
-        "description": "Un formato editoriale breve per osservazioni pratiche, non per teatro di mercato."
-      },
-      "playbook": {
-        "category": "Playbook",
-        "time": "6 min",
-        "title": "Una revisione settimanale che mantiene piccole le decisioni.",
-        "description": "Una struttura riutilizzabile per trasformare le abitudini di review in risultati ripetibili."
-      },
-      "signal": {
-        "category": "Signal",
-        "time": "3 min",
-        "title": "Meno dati. Filtri migliori.",
-        "description": "Un formato compatto per idee che meritano di restare visibili tra una sessione di ricerca e l'altra."
-      }
-    }
+    "eyebrow": "Appunti",
+    "title": "Idee formate nel tempo.",
+    "description": "Idee sviluppate in piccole iterazioni costanti."
   }
 }

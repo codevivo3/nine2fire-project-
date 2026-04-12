@@ -1,21 +1,21 @@
 {
   "Hero": {
     "eyebrow": "Nine2Fire",
-    "title": "Costruisci un sistema finanziario che funzioni senza rumore.",
-    "description": "Un livello operativo calmo per capitale, decisioni e contenuti editoriali. Prima la struttura. La complessità solo se serve davvero.",
-    "primaryCta": "Leggi la nota",
-    "secondaryCta": "Vedi la roadmap",
+    "title": "Trasforma il tempo in indipendenza finanziaria.",
+    "description": "Un livello operativo calmo per capitale, decisioni e segnale editoriale.\nPrima la struttura. Complessità solo quando si guadagna il suo posto.",
+    "primaryCta": "Appunti",
+    "secondaryCta": "Strategia",
     "panel": {
       "title": "Note operative",
-      "badge": "Fase uno",
+      "badge": "Prima fase",
       "items": {
         "signal": {
-          "label": "Focus",
-          "value": "Tieni il piano visibile quando il mercato alza il volume."
+          "label": "Obiettivo",
+          "value": "Tieni il piano visibile quando il mercato diventa rumoroso."
         },
         "capital": {
           "label": "Capitale",
-          "value": "Assegna un ruolo preciso a ogni riserva, rischio e scelta."
+          "value": "Il capitale scorre dove l’intenzione è definita."
         },
         "decisions": {
           "label": "Decisioni",

@@ -15,7 +15,6 @@ import { getLocale } from "next-intl/server";
 import { Manrope } from "next/font/google";
 import { THEME_STORAGE_KEY } from "@/lib/theme";
 import "./globals.css";
-import Script from "next/script";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -85,7 +84,6 @@ export default async function RootLayout({
   // Falls back when locale resolution happens outside a localized segment.
   const locale = await getLocale().catch(() => "en");
   const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
-  const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
   const themeScript = `
     (function () {
       var storageKey = ${JSON.stringify(THEME_STORAGE_KEY)};
@@ -153,24 +151,6 @@ export default async function RootLayout({
       </head>
       <body className="min-h-full text-foreground font-sans before:content-[''] before:fixed before:inset-[-32px] before:-z-10 before:bg-[var(--background-pattern)] before:bg-cover before:bg-center before:bg-no-repeat">
         {children}
-        {GA_ID && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${GA_ID}', {
-                  page_path: window.location.pathname,
-                });
-              `}
-            </Script>
-          </>
-        )}
         <Analytics />
       </body>
     </html>

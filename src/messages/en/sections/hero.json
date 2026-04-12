@@ -1,8 +1,8 @@
 {
   "Hero": {
     "eyebrow": "Nine2Fire",
-    "title": "Build a financial system that runs without noise.",
-    "description": "A calm operating layer for capital, decisions, and editorial signal. Clear structure first. Complexity later, only if it earns its place.",
+    "title": "Turn time into financial independence.",
+    "description": "A calm operating layer for capital, decisions, and editorial signal.\nStructure first. Complexity only when it earns its place.",
     "primaryCta": "Read the brief",
     "secondaryCta": "See the roadmap",
     "panel": {
@@ -15,7 +15,7 @@
         },
         "capital": {
           "label": "Capital",
-          "value": "Give every reserve, risk, and move a defined role."
+          "value": "Capital flows where intent is defined."
         },
         "decisions": {
           "label": "Decisions",

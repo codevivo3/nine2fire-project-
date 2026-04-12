@@ -1,0 +1,36 @@
+{
+  "Terms": {
+    "title": "Termini di servizio",
+    "intro": "Questi termini definiscono come viene usato questo sito. L’obiettivo è la chiarezza e l’uso corretto, non la restrizione.",
+
+    "usage": {
+      "title": "Uso dei contenuti",
+      "body": "I contenuti di questo sito sono forniti solo a scopo informativo. Puoi leggerli e condividerli per uso personale, ma non farne un uso improprio o presentarli in modo fuorviante."
+    },
+
+    "intellectualProperty": {
+      "title": "Proprietà intellettuale",
+      "body": "Tutti i contenuti, inclusi testi e design, appartengono a Nine2Fire salvo diversa indicazione. Non possono essere riprodotti o distribuiti senza autorizzazione."
+    },
+
+    "limitations": {
+      "title": "Limitazioni",
+      "body": "I contenuti sono forniti così come sono, senza garanzie di accuratezza o completezza. Non costituiscono consulenza professionale."
+    },
+
+    "liability": {
+      "title": "Responsabilità",
+      "body": "Il proprietario del sito non è responsabile per eventuali perdite o danni derivanti dall’uso di questo sito o dall’affidamento sui suoi contenuti."
+    },
+
+    "changes": {
+      "title": "Modifiche",
+      "body": "Questi termini possono essere aggiornati nel tempo. L’uso continuato del sito implica l’accettazione di eventuali modifiche."
+    },
+
+    "contact": {
+      "title": "Contatti",
+      "body": "Per qualsiasi domanda relativa a questi termini, puoi contattare il proprietario del sito tramite i canali disponibili."
+    }
+  }
+}
